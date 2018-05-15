@@ -80,7 +80,7 @@ def game_loop():
         scrap_pos = scraps_objects.update(pg.Rect(player.rect.x + 10, player.rect.y, 45, 85),
                                           player, projectiles_objects)
         if scrap_pos is not None:
-            particles.append(se.ParticleBall(gameDisplay, scrap_pos, (0, -1), GRAVITY, particles, sparkles, 8))
+            particles.append(se.ParticleBall(gameDisplay, scrap_pos, (0, -1), GRAVITY, particles, sparkles, 12))
         for p in particles:
             p.update()
             if len(particles) > 70:

@@ -52,8 +52,6 @@ class ParticleBall(Particle):
 
     def draw(self):
         for p in self.container:
-            if len(self.connections) > 300:
-                self.connections.remove(p)
             if p is not self:
                 if self not in p.connections:
                     dist = math.sqrt(abs(pow(p.pos.x-self.pos.x, 2) + pow(p.pos.y-self.pos.y, 2)))
