@@ -34,6 +34,7 @@ pg.init()
 pg.mixer.init()
 pg.display.set_caption('Space Wars')
 clock = pg.time.Clock()
+pg.mixer.music.load('res\\music\\MyVeryOwnDeadShip.ogg')
 FONT = pg.font.Font('res\\fonts\\Computerfont.ttf', 62)
 FONT_SMALL = pg.font.Font('res\\fonts\\Computerfont.ttf', 32)
 PEW_SOUND = pg.mixer.Sound('res\\sounds\\pew.wav')
@@ -48,6 +49,7 @@ EXPLOSIONS = [EXPLOSION_01, EXPLOSION_02, EXPLOSION_03, EXPLOSION_04, EXPLOSION_
 
 def game_loop():
     # ----------- INIT ####
+    pg.mixer.music.play(-1)
     player = pl.Player(pl.PLAYER_UP_DOWN, 3, 50, 1)
     player.rect.center = dis_WIDTH * 0.5 - 33, dis_HEIGHT * 0.8
     projectiles_objects = projectiles.Projectiles()
