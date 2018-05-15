@@ -29,6 +29,7 @@ import player as pl
 import level_transition as lt
 import scraps
 import sparcles_effect as se
+import menu
 
 pg.mixer.pre_init(44100, -16, 1, 512)
 pg.init()
@@ -49,7 +50,15 @@ EXPLOSIONS = [EXPLOSION_01, EXPLOSION_02, EXPLOSION_03, EXPLOSION_04, EXPLOSION_
 
 
 def game_loop():
-    # TODO Press enter to start
+    menu_object = menu.Menu()
+    # ----------- INIT MENU ####
+    while menu_object.menu_loop:
+        menu_object.update()
+        menu_object.draw(FONT, FONT_SMALL)
+        for event in pg.event.get():
+            menu_object.get_event(event)
+        pg.display.update()
+        clock.tick(fps)
 
     # ----------- INIT ####
     pg.mixer.music.play(-1)
@@ -74,8 +83,6 @@ def game_loop():
                 player.is_dead = True
                 exit_ = True
             if event.type == pg.KEYDOWN:
-                if event.key == pg.K_SPACE:
-                    pass
                 if event.key == pg.K_ESCAPE:
                     exit_ = True
                     player.is_dead = True
