@@ -17,8 +17,8 @@ class Particle(object):
         self.color = pg.Color(color)
 
         self.radius = random.randint(4, 16)
-        self.connectDist = self.radius * 4
-        self.surfSize = surface.get_size()
+        self.connect_dist = self.radius * 4
+        self.surf_size = surface.get_size()
         self.drag = .9
         self.connections = []
 
@@ -34,9 +34,9 @@ class Particle(object):
 
     def out_of_bounds(self):
         out_of_bounds = False
-        if self.pos[0] < -self.radius or self.pos[0] > self.surfSize[0] + self.radius:
+        if self.pos[0] < -self.radius or self.pos[0] > self.surf_size[0] + self.radius:
             out_of_bounds = True
-        elif self.pos[1] < -self.radius or self.pos[1] > self.surfSize[1] + self.radius:
+        elif self.pos[1] < -self.radius or self.pos[1] > self.surf_size[1] + self.radius:
             out_of_bounds = True
         return out_of_bounds
 
@@ -45,40 +45,40 @@ class ParticleBall(Particle):
     def __init__(self, surface, pos, vel, gravity, container, sparkle_container, color='red'):
         super(ParticleBall, self).__init__(surface, pos, vel, gravity, container, color)
 
-        self.sparkleContainer = sparkle_container
+        self.sparkle_container = sparkle_container
         self.connections = []
-        self.createdSparkles = []
+        self.created_sparkles = []
 
     def draw(self):
         for p in self.container:
             if p is not self:
                 if self not in p.connections:
                     dist = math.sqrt(abs(pow(p.pos.x-self.pos.x, 2) + pow(p.pos.y-self.pos.y, 2)))
-                    if dist < self.connectDist:
+                    if dist < self.connect_dist:
                         self.connections.append(p)
                         self.create_sparkles(p)
 
     def create_sparkles(self, target):
-        if target not in self.createdSparkles:
+        if target not in self.created_sparkles:
             for r in range(self.radius):
-                self.sparkleContainer.append(ParticleSparkle(self.surface, (self.pos.x, self.pos.y),
-                                                             (self.vel.x, self.vel.y),
-                                                             self.gravity, self.sparkleContainer))
-            self.createdSparkles.append(target)
+                self.sparkle_container.append(ParticleSparkle(self.surface, (self.pos.x, self.pos.y),
+                                                              (self.vel.x, self.vel.y),
+                                                              self.gravity, self.sparkle_container))
+            self.created_sparkles.append(target)
 
 
 class ParticleSparkle(Particle):
     def __init__(self, surface, pos, vel, gravity, container, color='white', age=20):
         super(ParticleSparkle, self).__init__(surface, pos, vel, gravity, container, color)
-        self.valueStep = 100.0/float(age)
+        self.value_step = 100.0/float(age)
 
     def update(self):
         super(ParticleSparkle, self).update()
         hsva = self.color.hsva
         value = hsva[2]
         alpha = hsva[3]
-        value -= self.valueStep
-        alpha -= self.valueStep
+        value -= self.value_step
+        alpha -= self.value_step
         if value < 0 or alpha < 0:
             try:
                 self.container.remove(self)
