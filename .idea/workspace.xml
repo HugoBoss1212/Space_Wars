@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="47803e8d-b93f-402c-9da8-12b4406bda16" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/res/sprites/rocks_medium.png" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/comet.py" afterPath="$PROJECT_DIR$/comet.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main.py" afterPath="$PROJECT_DIR$/main.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sparcles_effect.py" afterPath="$PROJECT_DIR$/sparcles_effect.py" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -21,7 +17,7 @@
       <file leaf-file-name="main.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="132">
+            <state relative-caret-position="1071">
               <caret line="63" column="93" lean-forward="false" selection-start-line="63" selection-start-column="93" selection-end-line="63" selection-end-column="93" />
               <folding>
                 <element signature="e#1106#1125#0" expanded="true" />
@@ -592,7 +588,14 @@
       <option name="project" value="LOCAL" />
       <updated>1526390155469</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Nowe grafiki, &#10;ograniczenie wieku cząsteczek">
+      <created>1526391215682</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1526391215683</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TodoView">
@@ -644,7 +647,8 @@
     <MESSAGE value="Init Commit" />
     <MESSAGE value="Code Refactor" />
     <MESSAGE value="Nowe efekty cząsteczkowe,&#10;więcej odłamków,&#10;nowe grafiki" />
-    <option name="LAST_COMMIT_MESSAGE" value="Nowe efekty cząsteczkowe,&#10;więcej odłamków,&#10;nowe grafiki" />
+    <MESSAGE value="Nowe grafiki, &#10;ograniczenie wieku cząsteczek" />
+    <option name="LAST_COMMIT_MESSAGE" value="Nowe grafiki, &#10;ograniczenie wieku cząsteczek" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -842,7 +846,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
+        <state relative-caret-position="1071">
           <caret line="63" column="93" lean-forward="false" selection-start-line="63" selection-start-column="93" selection-end-line="63" selection-end-column="93" />
           <folding>
             <element signature="e#1106#1125#0" expanded="true" />
