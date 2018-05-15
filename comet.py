@@ -4,8 +4,11 @@ from constans import dis_WIDTH, dis_HEIGHT, comet_difficulty_speed, comets_size_
 import time as t
 
 COMET_SMALL = pg.image.load('res\\sprites\\rocks_small.png')
-COMET_MEDIUM = pg.image.load('res\\sprites\\rocks_medium.png')
+COMET_MEDIUM_01 = pg.image.load('res\\sprites\\rocks_medium_01.png')
+COMET_MEDIUM_02 = pg.image.load('res\\sprites\\rocks_medium_02.png')
+COMET_MEDIUM_03 = pg.image.load('res\\sprites\\rocks_medium_03.png')
 COMET_BIG = pg.image.load('res\\sprites\\rocks_big.png')
+COMET_MEDIUM = [COMET_MEDIUM_01, COMET_MEDIUM_02, COMET_MEDIUM_03]
 
 
 class Comet:
@@ -28,7 +31,7 @@ class Comet:
             self.id = 1
         else:
             self.speed = np.random.random_integers(4, 5 + comet_difficulty_speed)
-            self.image = COMET_MEDIUM
+            self.image = np.random.choice(COMET_MEDIUM)
             self.live = 3
             self.id = 2
         self.rect = self.image.get_rect()

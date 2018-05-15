@@ -2,14 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="47803e8d-b93f-402c-9da8-12b4406bda16" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/res/sprites/scraps_big.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/res/sprites/scraps_medium.png" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/sprites/rocks_big.png" afterPath="$PROJECT_DIR$/res/sprites/rocks_big.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/sprites/rocks_small.png" afterPath="$PROJECT_DIR$/res/sprites/rocks_small.png" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/res/sprites/rocks_medium.png" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/comet.py" afterPath="$PROJECT_DIR$/comet.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main.py" afterPath="$PROJECT_DIR$/main.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scraps.py" afterPath="$PROJECT_DIR$/scraps.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sparcles_effect.py" afterPath="$PROJECT_DIR$/sparcles_effect.py" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -22,11 +18,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="main.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="main.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="318">
-              <caret line="93" column="0" lean-forward="false" selection-start-line="93" selection-start-column="0" selection-end-line="93" selection-end-column="0" />
+            <state relative-caret-position="132">
+              <caret line="63" column="93" lean-forward="false" selection-start-line="63" selection-start-column="93" selection-end-line="63" selection-end-column="93" />
               <folding>
                 <element signature="e#1106#1125#0" expanded="true" />
               </folding>
@@ -34,11 +30,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="sparcles_effect.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="sparcles_effect.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/sparcles_effect.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1190">
-              <caret line="70" column="32" lean-forward="true" selection-start-line="70" selection-start-column="32" selection-end-line="70" selection-end-column="32" />
+            <state relative-caret-position="415">
+              <caret line="71" column="68" lean-forward="false" selection-start-line="71" selection-start-column="68" selection-end-line="71" selection-end-column="68" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
@@ -49,8 +45,8 @@
       <file leaf-file-name="scraps.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/scraps.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="27" column="20" lean-forward="true" selection-start-line="27" selection-start-column="20" selection-end-line="27" selection-end-column="20" />
+            <state relative-caret-position="349">
+              <caret line="29" column="69" lean-forward="false" selection-start-line="29" selection-start-column="45" selection-end-line="29" selection-end-column="69" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
               </folding>
@@ -61,8 +57,8 @@
       <file leaf-file-name="comet.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/comet.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="247">
-              <caret line="23" column="42" lean-forward="false" selection-start-line="23" selection-start-column="42" selection-end-line="23" selection-end-column="42" />
+            <state relative-caret-position="525">
+              <caret line="33" column="55" lean-forward="false" selection-start-line="33" selection-start-column="55" selection-end-line="33" selection-end-column="55" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
               </folding>
@@ -111,9 +107,9 @@
         <option value="$PROJECT_DIR$/constans.py" />
         <option value="$PROJECT_DIR$/vec2d.py" />
         <option value="$PROJECT_DIR$/scraps.py" />
-        <option value="$PROJECT_DIR$/main.py" />
         <option value="$PROJECT_DIR$/sparcles_effect.py" />
         <option value="$PROJECT_DIR$/comet.py" />
+        <option value="$PROJECT_DIR$/main.py" />
       </list>
     </option>
   </component>
@@ -589,7 +585,14 @@
       <option name="project" value="LOCAL" />
       <updated>1526379872083</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Nowe efekty cząsteczkowe,&#10;więcej odłamków,&#10;nowe grafiki">
+      <created>1526390155469</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1526390155469</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TodoView">
@@ -640,7 +643,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Init Commit" />
     <MESSAGE value="Code Refactor" />
-    <option name="LAST_COMMIT_MESSAGE" value="Code Refactor" />
+    <MESSAGE value="Nowe efekty cząsteczkowe,&#10;więcej odłamków,&#10;nowe grafiki" />
+    <option name="LAST_COMMIT_MESSAGE" value="Nowe efekty cząsteczkowe,&#10;więcej odłamków,&#10;nowe grafiki" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -808,8 +812,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/scraps.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="27" column="20" lean-forward="true" selection-start-line="27" selection-start-column="20" selection-end-line="27" selection-end-column="20" />
+        <state relative-caret-position="349">
+          <caret line="29" column="69" lean-forward="false" selection-start-line="29" selection-start-column="45" selection-end-line="29" selection-end-column="69" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
           </folding>
@@ -818,30 +822,30 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/comet.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="23" column="42" lean-forward="false" selection-start-line="23" selection-start-column="42" selection-end-line="23" selection-end-column="42" />
+        <state relative-caret-position="525">
+          <caret line="33" column="55" lean-forward="false" selection-start-line="33" selection-start-column="55" selection-end-line="33" selection-end-column="55" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main.py">
+    <entry file="file://$PROJECT_DIR$/sparcles_effect.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="318">
-          <caret line="93" column="0" lean-forward="false" selection-start-line="93" selection-start-column="0" selection-end-line="93" selection-end-column="0" />
+        <state relative-caret-position="415">
+          <caret line="71" column="68" lean-forward="false" selection-start-line="71" selection-start-column="68" selection-end-line="71" selection-end-column="68" />
           <folding>
-            <element signature="e#1106#1125#0" expanded="true" />
+            <element signature="e#0#11#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sparcles_effect.py">
+    <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1190">
-          <caret line="70" column="32" lean-forward="true" selection-start-line="70" selection-start-column="32" selection-end-line="70" selection-end-column="32" />
+        <state relative-caret-position="132">
+          <caret line="63" column="93" lean-forward="false" selection-start-line="63" selection-start-column="93" selection-end-line="63" selection-end-column="93" />
           <folding>
-            <element signature="e#0#11#0" expanded="true" />
+            <element signature="e#1106#1125#0" expanded="true" />
           </folding>
         </state>
       </provider>
