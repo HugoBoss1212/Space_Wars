@@ -1,6 +1,6 @@
 import numpy as np
 import pygame as pg
-from constans import dis_WIDTH, dis_HEIGHT, size
+from constans import display_width, display_height, size
 
 TAIL = pg.image.load('res\\sprites\\tail.png')
 TAIL_DIM = pg.image.load('res\\sprites\\taildim.png')
@@ -10,7 +10,7 @@ TAIL_DIMMER = pg.image.load('res\\sprites\\taildimer.png')
 class Particle:
     def __init__(self):
         self.particles = []
-        self.x = np.random.random_integers(1, dis_WIDTH)
+        self.x = np.random.random_integers(1, display_width)
         self.y = np.random.random_integers(-120, -60)
         self.tail = np.random.random_integers(70, 100)
         self.speed = np.random.random_integers(2, 7)
@@ -27,7 +27,7 @@ class Particle:
         for particle in self.particles:
             particle.y += particle.speed + level
 
-            if particle.y > dis_HEIGHT:
+            if particle.y > display_height:
                 self.particles.remove(particle)
                 self.particles.append(Particle())
 

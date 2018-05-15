@@ -1,4 +1,4 @@
-from constans import dis_HEIGHT, black, dis_WIDTH
+from constans import display_height, black, display_width
 import pygame as pg
 
 
@@ -27,7 +27,7 @@ class LevelTransition:
             self.height = 200
 
         if self.transition:
-            if self.y < dis_HEIGHT:
+            if self.y < display_height:
                 self.y += self.speed
                 self.draw(level)
             else:
@@ -38,5 +38,5 @@ class LevelTransition:
         pg.draw.rect(self.game_display, self.color, (self.x, self.y, self.width, self.height), 0)
         text_surf = self.font.render("battle_hub_0" + str(level), True, black)
         text_rect = text_surf.get_rect()
-        text_rect.center = (dis_WIDTH/2, self.y + 100)
+        text_rect.center = (display_width / 2, self.y + 100)
         self.game_display.blit(text_surf, text_rect)

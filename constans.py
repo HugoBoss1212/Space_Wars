@@ -1,7 +1,7 @@
 import pygame as pg
 
-dis_WIDTH = 1024
-dis_HEIGHT = 1080
+display_width = 1024
+display_height = 1080
 size = 100
 black = (0, 0, 0)
 white = (255, 255, 255)
@@ -10,5 +10,9 @@ green = (0, 255, 0)
 blue = (0, 0, 255)
 comet_difficulty_speed = 0
 comets_size_difficulty = 3
-gameDisplay = pg.display.set_mode((dis_WIDTH, dis_HEIGHT))
-GRAVITY = (0, -.1)
+game_display = pg.display.set_mode((display_width, display_height))
+gravity = (0, -.1)
+start_lives = 3
+start_score = 50
+effect_size = 70
+fps = 60

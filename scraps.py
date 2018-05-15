@@ -1,6 +1,6 @@
 import pygame as pg
 import numpy as np
-from constans import dis_WIDTH, dis_HEIGHT
+from constans import display_width, display_height
 import math
 
 SCRAP_MEDIUM_01 = pg.image.load('res\\sprites\\scraps_medium_01.png')
@@ -44,7 +44,7 @@ class Scraps:
             scrap.y += scrap.speed_y
             scrap.rect.x = scrap.x
             scrap.rect.y = scrap.y
-            if scrap.x > dis_WIDTH or scrap.x < -scrap.rect.width or scrap.y > dis_HEIGHT:
+            if scrap.x > display_width or scrap.x < -scrap.rect.width or scrap.y > display_height:
                 self.scraps_list.remove(scrap)
             if scrap.rect.colliderect(rect):
                 self.scraps_list.remove(scrap)

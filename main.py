@@ -22,7 +22,9 @@ import pygame as pg
 import particle
 import projectiles
 import comet
-from constans import gameDisplay, black, dis_WIDTH, dis_HEIGHT, white, GRAVITY
+from constans import game_display, black, display_width, display_height,\
+                     white, gravity, start_lives, start_score, effect_size,\
+                     fps
 import _thread
 import player as pl
 import level_transition as lt
@@ -50,14 +52,14 @@ EXPLOSIONS = [EXPLOSION_01, EXPLOSION_02, EXPLOSION_03, EXPLOSION_04, EXPLOSION_
 def game_loop():
     # ----------- INIT ####
     pg.mixer.music.play(-1)
-    player = pl.Player(pl.PLAYER_UP_DOWN, 3, 50, 1)
-    player.rect.center = dis_WIDTH * 0.5 - 33, dis_HEIGHT * 0.8
+    player = pl.Player(pl.PLAYER_UP_DOWN, start_lives, start_score, 1)
+    player.rect.center = display_width * 0.5 - 33, display_height * 0.8
     projectiles_objects = projectiles.Projectiles()
     particles_objects = particle.Particle()
     particles_objects.add_particles()
     comets_objects = comet.Comet()
     _thread.start_new_thread(comets_objects.add_comets, (10, ))
-    level_transition = lt.LevelTransition(0, -400, gameDisplay, white, 3, FONT, dis_WIDTH, dis_HEIGHT + 400)
+    level_transition = lt.LevelTransition(0, -400, game_display, white, 3, FONT, display_width, display_height + 400)
     scraps_objects = scraps.Scraps(0, 0, 0, 0)
     particles = []
     sparkles = []
@@ -72,9 +74,9 @@ def game_loop():
                 exit_ = True
             if event.type == pg.KEYDOWN:
                 if event.key == pg.K_SPACE:
-                    particles.append(se.ParticleBall(gameDisplay,
+                    particles.append(se.ParticleBall(game_display,
                                                      (player.rect.x + player.rect.width/2, player.rect.y),
-                                                     (0, -1), GRAVITY, particles, sparkles, 8))
+                                                     (0, -1), gravity, particles, sparkles, 8))
             if event.type == pg.KEYUP:
                 pass
             player.get_event(event)
@@ -87,34 +89,34 @@ def game_loop():
                                           player, projectiles_objects, scraps_objects, EXPLOSIONS)
         if comet_pos is not None:
             for i in range(3):
-                particles.append(se.ParticleBall(gameDisplay, comet_pos, (0, -1), GRAVITY, particles, sparkles, 20))
+                particles.append(se.ParticleBall(game_display, comet_pos, (0, -1), gravity, particles, sparkles, 20))
         player.update()
         scrap_pos = scraps_objects.update(pg.Rect(player.rect.x + 10, player.rect.y, 45, 85),
                                           player, projectiles_objects)
         if scrap_pos is not None:
-            particles.append(se.ParticleBall(gameDisplay, scrap_pos, (0, -1), GRAVITY, particles, sparkles, 12))
+            particles.append(se.ParticleBall(game_display, scrap_pos, (0, -1), gravity, particles, sparkles, 12))
         for p in particles:
             p.update()
             try:
-                if len(particles) > 70: particles.remove(p)
+                if clock.get_fps() + 1 < fps: particles.remove(p)
             except ValueError:
                 pass
         for s in sparkles: s.update()
 
         # ----------- DRAW ####
-        gameDisplay.fill(black)
-        projectiles_objects.draw(gameDisplay)
-        particles_objects.draw(gameDisplay)
-        comets_objects.draw(gameDisplay)
-        player.draw(gameDisplay)
-        pl.draw_points(player.score, FONT_SMALL, gameDisplay)
-        scraps_objects.draw(gameDisplay)
+        game_display.fill(black)
+        projectiles_objects.draw(game_display)
+        particles_objects.draw(game_display)
+        comets_objects.draw(game_display)
+        player.draw(game_display)
+        pl.draw_points(player.score, FONT_SMALL, game_display)
+        scraps_objects.draw(game_display)
         for p in particles: p.draw()
         for s in sparkles: s.draw()
         level_transition.update(player.level)
 
         pg.display.update()
-        clock.tick(60)
+        clock.tick(fps)
 
     if not exit_:
         game_loop()

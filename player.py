@@ -1,5 +1,5 @@
 import pygame as pg
-from constans import dis_HEIGHT, dis_WIDTH, white
+from constans import display_height, display_width, white
 import constans
 
 PLAYER_UP_DOWN = pg.image.load('res\\sprites\\player_up_down.png')
@@ -60,7 +60,7 @@ class Player(pg.sprite.Sprite):
                 self.image = PLAYER_UP_DOWN
 
     def bounds(self):
-        if self.rect.x + 65 > dis_WIDTH:
+        if self.rect.x + 65 > display_width:
             self.stop_x()
             self.rect.x -= 1
             self.image = PLAYER_UP_DOWN
@@ -72,7 +72,7 @@ class Player(pg.sprite.Sprite):
             self.stop_y()
             self.rect.y += 1
             self.image = PLAYER_UP_DOWN
-        if self.rect.y + 100 > dis_HEIGHT:
+        if self.rect.y + 100 > display_height:
             self.stop_y()
             self.rect.y -= 1
             self.image = PLAYER_UP_DOWN

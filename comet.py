@@ -1,6 +1,6 @@
 import pygame as pg
 import numpy as np
-from constans import dis_WIDTH, dis_HEIGHT, comet_difficulty_speed, comets_size_difficulty
+from constans import display_width, display_height, comet_difficulty_speed, comets_size_difficulty
 import time as t
 
 COMET_SMALL = pg.image.load('res\\sprites\\rocks_small.png')
@@ -15,7 +15,7 @@ class Comet:
     def __init__(self):
         self.comets = []
 
-        self.x = np.random.random_integers(1, dis_WIDTH)
+        self.x = np.random.random_integers(1, display_width)
         self.y = np.random.random_integers(-250, -60)
         self.width = np.random.random_integers(20, 100)
         self.height = np.random.random_integers(40, 100)
@@ -54,7 +54,7 @@ class Comet:
                 pl.lives -= 1
                 pl.set_score(-20 * pl.lives * comet.live)
                 return comet.x + comet.width / 2, comet.y + comet.height / 2
-            if comet.y > dis_HEIGHT + 30:
+            if comet.y > display_height + 30:
                 self.comets.remove(comet)
                 self.comets.append(Comet())
                 pl.set_score(-10 * pl.lives)
