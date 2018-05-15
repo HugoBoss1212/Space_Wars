@@ -93,7 +93,10 @@ def game_loop():
             particles.append(se.ParticleBall(gameDisplay, scrap_pos, (0, -1), GRAVITY, particles, sparkles, 12))
         for p in particles:
             p.update()
-            if len(particles) > 70: particles.remove(p)
+            try:
+                if len(particles) > 70: particles.remove(p)
+            except ValueError:
+                pass
         for s in sparkles: s.update()
 
         # ----------- DRAW ####

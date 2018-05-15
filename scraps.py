@@ -48,7 +48,7 @@ class Scraps:
                 self.scraps_list.remove(scrap)
             if scrap.rect.colliderect(rect):
                 self.scraps_list.remove(scrap)
-                pl.set_score(-10 * pl.level)
+                pl.set_score(-10 * pl.level )
             if po.remove_off_screen(scrap.rect):
                 pl.set_score(10)
                 try:
