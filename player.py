@@ -78,29 +78,19 @@ class Player(pg.sprite.Sprite):
             self.image = PLAYER_UP_DOWN
 
     def level_progress(self):
-        if 2000 >= self.score >= 1000 and self.level == 1:
-            constans.comets_size_difficulty += 1
-            self.level += 1
-        elif 4000 >= self.score >= 2000 and self.level == 2:
-            constans.comets_size_difficulty += 1
-            constans.comet_difficulty_speed += 1
-            self.level += 1
-        elif 8000 >= self.score >= 4000 and self.level == 3:
-            constans.comets_size_difficulty += 1
-            constans.comet_difficulty_speed += 1
-            self.level += 1
-        elif 14000 >= self.score >= 8000 and self.level == 4:
-            constans.comets_size_difficulty += 1
-            constans.comet_difficulty_speed += 1
-            self.level += 1
-        elif 18000 >= self.score >= 14000 and self.level == 5:
-            constans.comets_size_difficulty += 1
-            constans.comet_difficulty_speed += 1
-            self.level += 1
-        elif 25000 >= self.score >= 18000 and self.level == 6:
-            constans.comets_size_difficulty += 1
-            constans.comet_difficulty_speed += 1
-            self.level += 1
+        if 2000 >= self.score >= 1000 and self.level == 1: self.level_up()
+        elif 4000 >= self.score >= 2000 and self.level == 2: self.level_up()
+        elif 8000 >= self.score >= 4000 and self.level == 3: self.level_up()
+        elif 14000 >= self.score >= 8000 and self.level == 4: self.level_up()
+        elif 18000 >= self.score >= 14000 and self.level == 5: self.level_up()
+        elif 25000 >= self.score >= 18000 and self.level == 6: self.level_up()
+        elif 30000 >= self.score >= 25000 and self.level == 7: self.level_up()
+        elif 35000 >= self.score >= 30000 and self.level == 8: self.level_up()
+
+    def level_up(self):
+        constans.comets_size_difficulty += 1
+        constans.comet_difficulty_speed += 1
+        self.level += 1
 
     def set_score(self, score): self.score += score
 

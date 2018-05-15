@@ -29,11 +29,21 @@ import level_transition as lt
 import scraps
 import sparcles_effect as se
 
+pg.mixer.pre_init(44100, -16, 1, 512)
 pg.init()
+pg.mixer.init()
 pg.display.set_caption('Space Wars')
 clock = pg.time.Clock()
 FONT = pg.font.Font('res\\fonts\\Computerfont.ttf', 62)
 FONT_SMALL = pg.font.Font('res\\fonts\\Computerfont.ttf', 32)
+PEW_SOUND = pg.mixer.Sound('res\\sounds\\pew.wav')
+EXPLOSION_01 = pg.mixer.Sound('res\\sounds\\exp_01.wav')
+EXPLOSION_02 = pg.mixer.Sound('res\\sounds\\exp_02.wav')
+EXPLOSION_03 = pg.mixer.Sound('res\\sounds\\exp_03.wav')
+EXPLOSION_04 = pg.mixer.Sound('res\\sounds\\exp_04.wav')
+EXPLOSION_05 = pg.mixer.Sound('res\\sounds\\exp_05.wav')
+EXPLOSION_06 = pg.mixer.Sound('res\\sounds\\exp_06.wav')
+EXPLOSIONS = [EXPLOSION_01, EXPLOSION_02, EXPLOSION_03, EXPLOSION_04, EXPLOSION_05, EXPLOSION_06]
 
 
 def game_loop():
@@ -66,13 +76,13 @@ def game_loop():
             if event.type == pg.KEYUP:
                 pass
             player.get_event(event)
-            projectiles_objects.get_event(event, player.rect)
+            projectiles_objects.get_event(event, player.rect, PEW_SOUND)
 
         # ----------- UPDATES ####
         projectiles_objects.update()
         particles_objects.update(player.level)
         comet_pos = comets_objects.update(pg.Rect(player.rect.x + 10, player.rect.y, 45, 85),
-                                          player, projectiles_objects, scraps_objects)
+                                          player, projectiles_objects, scraps_objects, EXPLOSIONS)
         if comet_pos is not None:
             for i in range(3):
                 particles.append(se.ParticleBall(gameDisplay, comet_pos, (0, -1), GRAVITY, particles, sparkles, 20))
@@ -83,8 +93,7 @@ def game_loop():
             particles.append(se.ParticleBall(gameDisplay, scrap_pos, (0, -1), GRAVITY, particles, sparkles, 12))
         for p in particles:
             p.update()
-            if len(particles) > 70:
-                particles.remove(p)
+            if len(particles) > 70: particles.remove(p)
         for s in sparkles: s.update()
 
         # ----------- DRAW ####

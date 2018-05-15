@@ -41,7 +41,8 @@ class Comet:
         self.rect.x = self.x
         self.size = comets_size_difficulty
 
-    def update(self, rect, pl, po, so):
+    def update(self, rect, pl, po, so, explosions):
+        explode_sound = explosions[np.random.random_integers(0, 5)]
         for comet in self.comets:
             comet.y += comet.speed
             comet.rect.y = comet.y
@@ -49,8 +50,10 @@ class Comet:
             if self.collide(rect, comet):
                 self.comets.remove(comet)
                 self.comets.append(Comet())
+                explode_sound.play()
                 pl.lives -= 1
                 pl.set_score(-20 * pl.lives * comet.live)
+                return comet.x + comet.width / 2, comet.y + comet.height / 2
             if comet.y > dis_HEIGHT + 30:
                 self.comets.remove(comet)
                 self.comets.append(Comet())
@@ -64,6 +67,7 @@ class Comet:
                     except ValueError:
                         pass
                     self.comets.append(Comet())
+                    explode_sound.play()
                     pl.set_score(30 * pl.lives)
                     if comet.id is not 1:
                         so.add_scraps(comet.speed, comet.x, comet.y, comet.id)

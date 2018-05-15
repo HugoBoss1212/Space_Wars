@@ -18,11 +18,12 @@ class Projectiles:
         for projectile in self.projectiles_left: projectile.draw(game_display)
         for projectile in self.projectiles_right: projectile.draw(game_display)
 
-    def get_event(self, event, pl_rect):
+    def get_event(self, event, pl_rect, pew_sound):
         if event.type == pg.KEYUP:
             if event.key == pg.K_SPACE:
                 self.projectiles_left.append(Projectile(pl_rect.x, pl_rect.y))
                 self.projectiles_right.append(Projectile(pl_rect.x + 32, pl_rect.y))
+                pew_sound.play()
 
     def remove_off_screen(self, rect=None):
         for projectile in self.projectiles_left:
