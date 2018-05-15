@@ -18,7 +18,7 @@ class Particle(object):
         self.color = pg.Color(color)
 
         self.radius = random.randint(4, 16)
-        self.connect_dist = self.radius * 4
+        self.connect_dist = self.radius * 2
         self.surf_size = surface.get_size()
         self.drag = .9
         self.connections = []
@@ -52,6 +52,8 @@ class ParticleBall(Particle):
 
     def draw(self):
         for p in self.container:
+            if len(self.connections) > 300:
+                self.connections.remove(p)
             if p is not self:
                 if self not in p.connections:
                     dist = math.sqrt(abs(pow(p.pos.x-self.pos.x, 2) + pow(p.pos.y-self.pos.y, 2)))

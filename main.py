@@ -61,7 +61,7 @@ def game_loop():
                 if event.key == pg.K_SPACE:
                     particles.append(se.ParticleBall(gameDisplay,
                                                      (player.rect.x + player.rect.width/2, player.rect.y),
-                                                     (0, -1), GRAVITY, particles, sparkles, 4))
+                                                     (0, -1), GRAVITY, particles, sparkles, 8))
             if event.type == pg.KEYUP:
                 pass
             player.get_event(event)
@@ -74,13 +74,16 @@ def game_loop():
                                           player, projectiles_objects, scraps_objects)
         if comet_pos is not None:
             for i in range(3):
-                particles.append(se.ParticleBall(gameDisplay, comet_pos, (0, -1), GRAVITY, particles, sparkles, 15))
+                particles.append(se.ParticleBall(gameDisplay, comet_pos, (0, -1), GRAVITY, particles, sparkles, 20))
         player.update()
         scrap_pos = scraps_objects.update(pg.Rect(player.rect.x + 10, player.rect.y, 45, 85),
                                           player, projectiles_objects)
         if scrap_pos is not None:
-            particles.append(se.ParticleBall(gameDisplay, scrap_pos, (0, -1), GRAVITY, particles, sparkles, 4))
-        for p in particles: p.update()
+            particles.append(se.ParticleBall(gameDisplay, scrap_pos, (0, -1), GRAVITY, particles, sparkles, 8))
+        for p in particles:
+            p.update()
+            if len(particles) > 70:
+                particles.remove(p)
         for s in sparkles: s.update()
 
         # ----------- DRAW ####
