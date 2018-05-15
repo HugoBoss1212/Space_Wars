@@ -1,8 +1,22 @@
 
-""" # --------------------------------------------- #
-        Projekt gry opartej na bibliotece pygame
-        Kacper Lechowicz L3
-""" # --------------------------------------------- #
+""" # ----------------------------------------------------------------------------- #
+                        Projekt gry opartej na bibliotece pygame
+                        Kacper Lechowicz L3
+                                             |__
+                                             |/
+                                             ---
+                                             / | [
+                                      !      | |||
+                                    _/|     _/|-++'
+                                +  +--|    |--|--|_ |-
+                             { /|__|  |/__|  |--- |||__/
+                            +---------------___[}-_===_.'____                   /
+                        ____`-' ||___-{]_| _[}-  |     |_[___==--              / _
+        __..._____--==/___]_|__|_____________________________[___==--___,-----' .7
+        |                                                                   BB-61/
+        _______________________________________________________________________|
+
+""" # --------------------------------------------------------------------------- #
 
 import pygame as pg
 import particle
@@ -33,7 +47,7 @@ def game_loop():
     comets_objects = comet.Comet()
     _thread.start_new_thread(comets_objects.add_comets, (10, ))
     level_transition = lt.LevelTransition(0, -400, gameDisplay, white, 3, FONT, dis_WIDTH, dis_HEIGHT + 400)
-    scraps_objects = scraps.Scraps(0, None, None, None)
+    scraps_objects = scraps.Scraps(0, 0, 0, 0)
     particles = []
     sparkles = []
 
@@ -47,7 +61,7 @@ def game_loop():
                 if event.key == pg.K_SPACE:
                     particles.append(se.ParticleBall(gameDisplay,
                                                      (player.rect.x + player.rect.width/2, player.rect.y),
-                                                     (0, -1), GRAVITY, particles, sparkles))
+                                                     (0, -1), GRAVITY, particles, sparkles, 8))
             if event.type == pg.KEYUP:
                 pass
             player.get_event(event)
@@ -62,8 +76,10 @@ def game_loop():
             for i in range(3):
                 particles.append(se.ParticleBall(gameDisplay, comet_pos, (0, -1), GRAVITY, particles, sparkles))
         player.update()
-        scraps_objects.update(pg.Rect(player.rect.x + 10, player.rect.y, 45, 85),
-                              player, projectiles_objects)
+        scrap_pos = scraps_objects.update(pg.Rect(player.rect.x + 10, player.rect.y, 45, 85),
+                                          player, projectiles_objects)
+        if scrap_pos is not None:
+            particles.append(se.ParticleBall(gameDisplay, scrap_pos, (0, -1), GRAVITY, particles, sparkles, 8))
         for p in particles: p.update()
         for s in sparkles: s.update()
 
@@ -75,9 +91,9 @@ def game_loop():
         player.draw(gameDisplay)
         pl.draw_points(player.score, FONT_SMALL, gameDisplay)
         scraps_objects.draw(gameDisplay)
-        level_transition.update(player.level)
         for p in particles: p.draw()
         for s in sparkles: s.draw()
+        level_transition.update(player.level)
 
         pg.display.update()
         clock.tick(60)

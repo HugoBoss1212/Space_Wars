@@ -21,7 +21,7 @@ class Comet:
             self.image = COMET_BIG
             self.live = 6
             self.id = 3
-        elif (self.height*self.width) < 1500:
+        elif (self.height*self.width) < 2000:
             self.speed = np.random.random_integers(7, 8 + comet_difficulty_speed)
             self.image = COMET_SMALL
             self.live = 1
@@ -62,6 +62,8 @@ class Comet:
                     self.comets.append(Comet())
                     pl.set_score(30 * pl.lives)
                     if comet.id is not 1:
+                        so.add_scraps(comet.speed, comet.x, comet.y, comet.id)
+                        so.add_scraps(comet.speed, comet.x, comet.y, comet.id)
                         so.add_scraps(comet.speed, comet.x, comet.y, comet.id)
                     return comet.x + comet.width / 2, comet.y + comet.height / 2
         return None

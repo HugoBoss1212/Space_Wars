@@ -5,7 +5,8 @@ import pygame as pg
 
 
 class Particle(object):
-    def __init__(self, surface, pos, vel, gravity, container, color='red'):
+    def __init__(self, surface, pos, vel, gravity, container, age,color='red'):
+        self.age = age
         self.surface = surface
         self.pos = Vec2d(pos)
         vel = [vel[0]+random.uniform(-3, 3), vel[1]+random.uniform(-3, 3)]
@@ -42,8 +43,8 @@ class Particle(object):
 
 
 class ParticleBall(Particle):
-    def __init__(self, surface, pos, vel, gravity, container, sparkle_container, color='red'):
-        super(ParticleBall, self).__init__(surface, pos, vel, gravity, container, color)
+    def __init__(self, surface, pos, vel, gravity, container, sparkle_container, age=20, color='red'):
+        super(ParticleBall, self).__init__(surface, pos, vel, gravity, container, age, color)
 
         self.sparkle_container = sparkle_container
         self.connections = []
@@ -63,13 +64,13 @@ class ParticleBall(Particle):
             for r in range(self.radius):
                 self.sparkle_container.append(ParticleSparkle(self.surface, (self.pos.x, self.pos.y),
                                                               (self.vel.x, self.vel.y),
-                                                              self.gravity, self.sparkle_container))
+                                                              self.gravity, self.sparkle_container, self.age))
             self.created_sparkles.append(target)
 
 
 class ParticleSparkle(Particle):
-    def __init__(self, surface, pos, vel, gravity, container, color='white', age=20):
-        super(ParticleSparkle, self).__init__(surface, pos, vel, gravity, container, color)
+    def __init__(self, surface, pos, vel, gravity, container, age=20, color='white'):
+        super(ParticleSparkle, self).__init__(surface, pos, vel, gravity, container, age, color)
         self.value_step = 100.0/float(age)
 
     def update(self):
