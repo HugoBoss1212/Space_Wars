@@ -14,5 +14,4 @@ game_display = pg.display.set_mode((display_width, display_height))
 gravity = (0, -.1)
 start_lives = 3
 start_score = 50
-effect_size = 70
 fps = 60

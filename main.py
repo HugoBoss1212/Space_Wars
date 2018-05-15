@@ -23,8 +23,7 @@ import particle
 import projectiles
 import comet
 from constans import game_display, black, display_width, display_height,\
-                     white, gravity, start_lives, start_score, effect_size,\
-                     fps
+                     white, gravity, start_lives, start_score, fps
 import _thread
 import player as pl
 import level_transition as lt
@@ -50,6 +49,8 @@ EXPLOSIONS = [EXPLOSION_01, EXPLOSION_02, EXPLOSION_03, EXPLOSION_04, EXPLOSION_
 
 
 def game_loop():
+    # TODO Press enter to start
+
     # ----------- INIT ####
     pg.mixer.music.play(-1)
     player = pl.Player(pl.PLAYER_UP_DOWN, start_lives, start_score, 1)
@@ -74,13 +75,14 @@ def game_loop():
                 exit_ = True
             if event.type == pg.KEYDOWN:
                 if event.key == pg.K_SPACE:
-                    particles.append(se.ParticleBall(game_display,
-                                                     (player.rect.x + player.rect.width/2, player.rect.y),
-                                                     (0, -1), gravity, particles, sparkles, 8))
+                    pass
+                if event.key == pg.K_ESCAPE:
+                    exit_ = True
+                    player.is_dead = True
             if event.type == pg.KEYUP:
                 pass
             player.get_event(event)
-            projectiles_objects.get_event(event, player.rect, PEW_SOUND)
+            projectiles_objects.get_event(event, player.rect, PEW_SOUND, particles, sparkles)
 
         # ----------- UPDATES ####
         projectiles_objects.update()
@@ -105,7 +107,7 @@ def game_loop():
 
         # ----------- DRAW ####
         game_display.fill(black)
-        projectiles_objects.draw(game_display)
+        projectiles_objects.draw()
         particles_objects.draw(game_display)
         comets_objects.draw(game_display)
         player.draw(game_display)

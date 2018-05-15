@@ -1,10 +1,12 @@
 import pygame as pg
-from constans import display_height, display_width, white
+from constans import display_height, display_width, white, fps
 import constans
 
 PLAYER_UP_DOWN = pg.image.load('res\\sprites\\player_up_down.png')
 PLAYER_LEFT = pg.image.load('res\\sprites\\player_left.png')
 PLAYER_RIGHT = pg.image.load('res\\sprites\\player_right.png')
+PLAYER_BLINK = pg.image.load('res\\sprites\\player_blink.png')
+PLAYER = [PLAYER_UP_DOWN, PLAYER_BLINK]
 
 
 class Player(pg.sprite.Sprite):
@@ -18,6 +20,9 @@ class Player(pg.sprite.Sprite):
         self.lives = lives
         self.score = score
         self.is_dead = False
+        self.temp = lives - 1
+        self.count = 0
+        self.blinking = False
 
     def draw(self, game_display):
         game_display.blit(self.image, self.rect)
@@ -29,15 +34,15 @@ class Player(pg.sprite.Sprite):
         self.rect.x += self.movement_x
         self.rect.y += self.movement_y
 
-        if self.movement_x > 0:
-            self.image = PLAYER_RIGHT
-        if self.movement_x < 0:
-            self.image = PLAYER_LEFT
+        if self.movement_x > 0: self.image = PLAYER_RIGHT
+        if self.movement_x < 0: self.image = PLAYER_LEFT
+        if self.blinking: self.blink()
 
         if self.lives == 0 or self.score < -500:
             self.is_dead = True
             self.level = 1
         self.level_progress()
+        self.player_hit()
 
     def get_event(self, event):
         if event.type == pg.KEYDOWN:
@@ -46,18 +51,10 @@ class Player(pg.sprite.Sprite):
             if event.key == pg.K_UP: self.turn_up()
             if event.key == pg.K_DOWN: self.turn_down()
         elif event.type == pg.KEYUP:
-            if event.key == pg.K_LEFT and self.movement_x < 0:
-                self.stop_x()
-                self.image = PLAYER_UP_DOWN
-            if event.key == pg.K_RIGHT and self.movement_x > 0:
-                self.stop_x()
-                self.image = PLAYER_UP_DOWN
-            if event.key == pg.K_DOWN and self.movement_y > 0:
-                self.stop_y()
-                self.image = PLAYER_UP_DOWN
-            if event.key == pg.K_UP and self.movement_y < 0:
-                self.stop_y()
-                self.image = PLAYER_UP_DOWN
+            if event.key == pg.K_LEFT and self.movement_x < 0: self.stop_x()
+            if event.key == pg.K_RIGHT and self.movement_x > 0: self.stop_x()
+            if event.key == pg.K_DOWN and self.movement_y > 0: self.stop_y()
+            if event.key == pg.K_UP and self.movement_y < 0: self.stop_y()
 
     def bounds(self):
         if self.rect.x + 65 > display_width:
@@ -92,6 +89,33 @@ class Player(pg.sprite.Sprite):
         constans.comet_difficulty_speed += 1
         self.level += 1
 
+    def player_hit(self):
+        if self.lives == self.temp:
+            self.temp -= 1
+            self.blinking = True
+
+    def blink(self):
+        if self.count < 3: self.image = PLAYER[1]
+        elif self.count < 6: self.image = PLAYER[0]
+        elif self.count < 9: self.image = PLAYER[1]
+        elif self.count < 12: self.image = PLAYER[0]
+        elif self.count < 15: self.image = PLAYER[1]
+        elif self.count < 18: self.image = PLAYER[0]
+        elif self.count < 21: self.image = PLAYER[1]
+        elif self.count < 24: self.image = PLAYER[0]
+        if self.count >= 24:
+            self.count = 0
+            self.blinking = False
+        else: self.count += 1
+
+    def stop_x(self):
+        self.movement_x = 0
+        self.image = PLAYER_UP_DOWN
+
+    def stop_y(self):
+        self.movement_y = 0
+        self.image = PLAYER_UP_DOWN
+
     def set_score(self, score): self.score += score
 
     def turn_left(self): self.movement_x = -6
@@ -101,10 +125,6 @@ class Player(pg.sprite.Sprite):
     def turn_up(self): self.movement_y = -6
 
     def turn_down(self): self.movement_y = 6
-
-    def stop_x(self): self.movement_x = 0
-
-    def stop_y(self): self.movement_y = 0
 
 
 def draw_points(points, font, game_display):
