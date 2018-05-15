@@ -37,7 +37,6 @@ FONT_SMALL = pg.font.Font('res\\fonts\\Computerfont.ttf', 32)
 
 
 def game_loop():
-
     # ----------- INIT ####
     player = pl.Player(pl.PLAYER_UP_DOWN, 3, 50, 1)
     player.rect.center = dis_WIDTH * 0.5 - 33, dis_HEIGHT * 0.8
@@ -50,6 +49,7 @@ def game_loop():
     scraps_objects = scraps.Scraps(0, 0, 0, 0)
     particles = []
     sparkles = []
+    exit_ = False
 
     while not player.is_dead:
 
@@ -57,6 +57,7 @@ def game_loop():
         for event in pg.event.get():
             if event.type == pg.QUIT:
                 player.is_dead = True
+                exit_ = True
             if event.type == pg.KEYDOWN:
                 if event.key == pg.K_SPACE:
                     particles.append(se.ParticleBall(gameDisplay,
@@ -101,7 +102,8 @@ def game_loop():
         pg.display.update()
         clock.tick(60)
 
-    game_loop()
+    if not exit_:
+        game_loop()
 
 
 game_loop()

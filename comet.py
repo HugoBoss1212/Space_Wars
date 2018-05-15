@@ -19,19 +19,20 @@ class Comet:
         self.y = np.random.random_integers(-250, -60)
         self.width = np.random.random_integers(20, 100)
         self.height = np.random.random_integers(40, 100)
+        self.angle = np.random.random_integers(-90, 90)
         if (self.height*self.width) > 8000:
             self.speed = np.random.random_integers(1, 2 + comet_difficulty_speed)
-            self.image = COMET_BIG
+            self.image = pg.transform.rotate(COMET_BIG, self.angle)
             self.live = 6
             self.id = 3
         elif (self.height*self.width) < 2000:
             self.speed = np.random.random_integers(7, 8 + comet_difficulty_speed)
-            self.image = COMET_SMALL
+            self.image = pg.transform.rotate(COMET_SMALL, self.angle)
             self.live = 1
             self.id = 1
         else:
             self.speed = np.random.random_integers(4, 5 + comet_difficulty_speed)
-            self.image = np.random.choice(COMET_MEDIUM)
+            self.image = pg.transform.rotate(np.random.choice(COMET_MEDIUM), self.angle)
             self.live = 3
             self.id = 2
         self.rect = self.image.get_rect()
