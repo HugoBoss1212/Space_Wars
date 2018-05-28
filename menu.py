@@ -17,7 +17,6 @@ class Menu:
 
     def update(self):
         self.blink()
-        print(str(main.player_dead))
 
     def draw(self, font, font_small):
         game_display.fill(white)
