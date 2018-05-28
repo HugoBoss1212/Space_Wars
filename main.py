@@ -31,6 +31,8 @@ import level_transition as lt
 import scraps
 import sparcles_effect as se
 import menu
+import enemy
+import time
 
 pg.mixer.pre_init(44100, -16, 1, 512)
 pg.init()
@@ -66,11 +68,13 @@ def game_loop():
     pg.mixer.music.play(-1)
     player = pl.Player(pl.PLAYER_UP_DOWN, start_lives, start_score, 1)
     player.rect.center = display_width * 0.5 - 33, display_height * 0.8
+    enemies = enemy.Enemies()
+    enemies_pro = enemy.Projectiles()
     projectiles_objects = projectiles.Projectiles()
     particles_objects = particle.Particle()
     particles_objects.add_particles()
     comets_objects = comet.Comet()
-    _thread.start_new_thread(comets_objects.add_comets, (10, ))
+    _thread.start_new_thread(comets_objects.add_comets, (1, ))
     level_transition = lt.LevelTransition(0, -400, game_display, white, 3, FONT, display_width, display_height + 400)
     scraps_objects = scraps.Scraps(0, 0, 0, 0)
     particles = []
@@ -95,6 +99,8 @@ def game_loop():
             projectiles_objects.get_event(event, player.rect, PEW_SOUND, particles, sparkles)
 
         # ----------- UPDATES ####
+        if player.level == 3 and len(enemies.enemies) < 50:
+            enemies.add_enemy()
         projectiles_objects.update()
         particles_objects.update(player.level)
         comet_pos = comets_objects.update(pg.Rect(player.rect.x + 10, player.rect.y, 45, 85),
@@ -102,6 +108,8 @@ def game_loop():
         if comet_pos is not None:
             for i in range(3):
                 particles.append(se.ParticleBall(game_display, comet_pos, (0, -1), gravity, particles, sparkles, 20))
+        enemies.update(enemies_pro)
+        enemies_pro.update(player)
         player.update()
         scrap_pos = scraps_objects.update(pg.Rect(player.rect.x + 10, player.rect.y, 45, 85),
                                           player, projectiles_objects)
@@ -120,11 +128,13 @@ def game_loop():
         projectiles_objects.draw()
         particles_objects.draw(game_display)
         comets_objects.draw(game_display)
+        enemies.draw(game_display)
         player.draw(game_display)
         pl.draw_points(player.score, FONT_SMALL, game_display)
         scraps_objects.draw(game_display)
         for p in particles: p.draw()
         for s in sparkles: s.draw()
+        enemies_pro.draw(game_display)
         level_transition.update(player.level)
 
         pg.display.update()

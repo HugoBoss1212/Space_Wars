@@ -50,14 +50,16 @@ class Comet:
             comet.size = comets_size_difficulty
             if self.collide(rect, comet):
                 self.comets.remove(comet)
-                self.comets.append(Comet())
+                if pl.level <= 2:
+                    self.comets.append(Comet())
                 explode_sound.play()
                 pl.lives -= 1
                 pl.set_score(-20 * pl.lives * comet.live)
                 return comet.x + comet.width / 2, comet.y + comet.height / 2
             if comet.y > display_height + 30:
                 self.comets.remove(comet)
-                self.comets.append(Comet())
+                if pl.level <= 2:
+                    self.comets.append(Comet())
                 self.base_health += display_height / base
                 if self.base_health >= display_height:
                     pl.is_dead = True
@@ -70,7 +72,8 @@ class Comet:
                         self.comets.remove(comet)
                     except ValueError:
                         pass
-                    self.comets.append(Comet())
+                    if pl.level <= 2:
+                        self.comets.append(Comet())
                     explode_sound.play()
                     pl.set_score(30 * pl.lives)
                     if comet.id is not 1:

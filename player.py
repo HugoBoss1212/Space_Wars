@@ -1,5 +1,5 @@
 import pygame as pg
-from constans import display_height, display_width, white, fps
+from constans import display_height, display_width, white
 import constans
 
 PLAYER_UP_DOWN = pg.image.load('res\\sprites\\player_up_down.png')
