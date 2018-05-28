@@ -32,7 +32,6 @@ import scraps
 import sparcles_effect as se
 import menu
 import enemy
-import time
 
 pg.mixer.pre_init(44100, -16, 1, 512)
 pg.init()
