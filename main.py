@@ -24,6 +24,7 @@ import projectiles
 import comet
 from constans import game_display, black, display_width, display_height,\
                      white, gravity, start_lives, start_score, fps
+import main
 import _thread
 import player as pl
 import level_transition as lt
@@ -36,6 +37,7 @@ pg.init()
 pg.mixer.init()
 pg.display.set_caption('Space Wars')
 clock = pg.time.Clock()
+player_dead = False
 pg.mixer.music.load('res\\music\\MyVeryOwnDeadShip.ogg')
 FONT = pg.font.Font('res\\fonts\\Computerfont.ttf', 62)
 FONT_SMALL = pg.font.Font('res\\fonts\\Computerfont.ttf', 32)
@@ -76,6 +78,7 @@ def game_loop():
     exit_ = False
 
     while not player.is_dead:
+        main.player_dead = True
 
         # ----------- HANDLING EVENTS ####
         for event in pg.event.get():
