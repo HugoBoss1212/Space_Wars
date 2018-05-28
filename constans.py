@@ -15,3 +15,4 @@ gravity = (0, -.1)
 start_lives = 3
 start_score = 50
 fps = 60
+base = 10
