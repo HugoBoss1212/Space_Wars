@@ -1,5 +1,5 @@
 import pygame as pg
-from constans import display_height, display_width
+from constans import display_height, display_width, thret
 import math
 import numpy as np
 
@@ -39,7 +39,7 @@ class Enemy(Enemies):
         self.image = ENEMY
         self.nr = nr
         self.count = 0
-        self.threat = np.random.random_integers(100, 3000)
+        self.threat = np.random.random_integers(100, thret)
         if self.threat <= 20: self.idle = 1
         else: self.idle = 0
 
@@ -66,7 +66,7 @@ class Enemy(Enemies):
         else: self.idle = 0
 
         if self.threat <= 5:
-            self.threat = np.random.random_integers(100, 3000)
+            self.threat = np.random.random_integers(100, thret)
             self.idle = 0
             projectile.add_projectile(self.rect.x, self.rect.y)
 

@@ -16,3 +16,4 @@ start_lives = 3
 start_score = 50
 fps = 60
 base = 10
+thret = 3000
