@@ -105,6 +105,7 @@ class Enemy(Enemies):
     def spawn_scraps(self, scraps):
         scraps.add_scraps(4, self.rect.x, self.rect.y, np.random.random_integers(2, 3))
 
+
 class Projectiles:
     def __init__(self):
         self.projectiles = []
@@ -151,16 +152,19 @@ class Projectile(Projectiles):
 
 
 class Scraps:
-    def __init__(self, speed, x, y):
+    def __init__(self, speed, x, y, value):
         super().__init__()
         self.scraps_list = []
 
         self.y = y
         self.x = x
         self.speed_x = np.random.uniform(-1.5, 1.5) * speed
-        self.speed_y = 2*speed - math.fabs(self.speed_x)
+        self.speed_y = -2*speed + math.fabs(self.speed_x)
         self.angle = math.atan((self.speed_x-self.speed_y)/1+(self.speed_x*self.speed_y))*180/math.pi
-        self.image = None
+        if value == 2:
+            self.image = pg.transform.rotate(ENEMY_SCRAP_01[np.random.random_integers(0, 1)], self.angle)
+        else:
+            self.image = pg.transform.rotate(ENEMY_SCRAP_02[np.random.random_integers(0, 2)], self.angle)
         self.rect = self.image.get_rect()
         self.rect.width *= 0.3
         self.rect.height *= 0.3
@@ -168,11 +172,18 @@ class Scraps:
         self.rect.y = self.y
 
     def update(self):
-        pass
+        for scrap in self.scraps_list:
+            scrap.rect.x += scrap.speed_x
+            scrap.rect.y += scrap.speed_y
+
+            if scrap.rect.y < 0:
+                self.scraps_list.remove(scrap)
 
     def draw(self, game_display):
-        pass
+        for scrap in self.scraps_list:
+            game_display.blit(pg.transform.scale(scrap.image, (int(scrap.rect.width), int(scrap.rect.height))),
+                              (scrap.x, scrap.y))
 
     def add_scraps(self, speed, x, y, value):
         for i in range(value):
-            self.scraps_list.append(Scraps(speed, x, y))
+            self.scraps_list.append(Scraps(speed, x, y, value))
