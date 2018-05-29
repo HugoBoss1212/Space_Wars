@@ -111,7 +111,7 @@ def game_loop():
         if comet_pos is not None:
             for i in range(3):
                 particles.append(se.ParticleBall(game_display, comet_pos, (0, -1), gravity, particles, sparkles, 20))
-        enemies.update(enemies_pro, projectiles_objects)
+        enemies.update(enemies_pro, projectiles_objects, player)
         enemies_pro.update(player)
         player.update()
         scrap_pos = scraps_objects.update(pg.Rect(player.rect.x + 10, player.rect.y, 45, 85),

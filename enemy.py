@@ -20,11 +20,15 @@ class Enemies:
     def draw(self, game_display):
         for enemy in self.enemies: enemy.draw(game_display)
 
-    def update(self, projectile, po):
+    def update(self, projectile, po, pl):
         for enemy in self.enemies:
             enemy.update(projectile)
             if enemy.collide(po):
-                self.enemies.remove(enemy)
+                try:
+                    self.enemies.remove(enemy)
+                    pl.set_score(100)
+                except ValueError:
+                    pass
 
     def add_enemy(self):
         self.pos_y += 1
@@ -51,7 +55,7 @@ class Enemy(Enemies):
 
     def draw(self, game_display): game_display.blit(self.image, self.rect)
 
-    def update(self, projectile, po=None):
+    def update(self, projectile, po=None, pl=None):
         if self.rect.y < display_height / 4 - (self.nr * 50):
             self.rect.y += self.vel
         else:
