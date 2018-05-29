@@ -45,6 +45,7 @@ pg.mixer.music.load('res\\music\\MyVeryOwnDeadShip.ogg')
 FONT = pg.font.Font('res\\fonts\\Computerfont.ttf', 62)
 FONT_SMALL = pg.font.Font('res\\fonts\\Computerfont.ttf', 32)
 PEW_SOUND = pg.mixer.Sound('res\\sounds\\pew.wav')
+PEW_ENEMY_SOUND = pg.mixer.Sound('res\\sounds\\pew_enemy.wav')
 EXPLOSION_01 = pg.mixer.Sound('res\\sounds\\exp_01.wav')
 EXPLOSION_02 = pg.mixer.Sound('res\\sounds\\exp_02.wav')
 EXPLOSION_03 = pg.mixer.Sound('res\\sounds\\exp_03.wav')
@@ -52,6 +53,10 @@ EXPLOSION_04 = pg.mixer.Sound('res\\sounds\\exp_04.wav')
 EXPLOSION_05 = pg.mixer.Sound('res\\sounds\\exp_05.wav')
 EXPLOSION_06 = pg.mixer.Sound('res\\sounds\\exp_06.wav')
 EXPLOSIONS = [EXPLOSION_01, EXPLOSION_02, EXPLOSION_03, EXPLOSION_04, EXPLOSION_05, EXPLOSION_06]
+HURT_ENEMY_01 = pg.mixer.Sound('res\\sounds\\hurt_enemy01.wav')
+HURT_ENEMY_02 = pg.mixer.Sound('res\\sounds\\hurt_enemy02.wav')
+HURT_ENEMY_03 = pg.mixer.Sound('res\\sounds\\hurt_enemy03.wav')
+HURTS = [HURT_ENEMY_01, HURT_ENEMY_02, HURT_ENEMY_03]
 
 
 def game_loop():
@@ -111,7 +116,7 @@ def game_loop():
         if comet_pos is not None:
             for i in range(3):
                 particles.append(se.ParticleBall(game_display, comet_pos, (0, -1), gravity, particles, sparkles, 20))
-        enemies.update(enemies_pro, projectiles_objects, player)
+        enemies.update(enemies_pro, projectiles_objects, player, PEW_ENEMY_SOUND, HURTS, EXPLOSIONS)
         enemies_pro.update(player)
         player.update()
         scrap_pos = scraps_objects.update(pg.Rect(player.rect.x + 10, player.rect.y, 45, 85),

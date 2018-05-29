@@ -20,10 +20,10 @@ class Enemies:
     def draw(self, game_display):
         for enemy in self.enemies: enemy.draw(game_display)
 
-    def update(self, projectile, po, pl):
+    def update(self, projectile, po, pl, pew_enemy_sound, hurts, explosions):
         for enemy in self.enemies:
-            enemy.update(projectile)
-            if enemy.collide(po):
+            enemy.update(projectile, pew_enemy_sound)
+            if enemy.collide(po, hurts, explosions):
                 try:
                     self.enemies.remove(enemy)
                     pl.set_score(100)
@@ -55,7 +55,7 @@ class Enemy(Enemies):
 
     def draw(self, game_display): game_display.blit(self.image, self.rect)
 
-    def update(self, projectile, po=None, pl=None):
+    def update(self, projectile, pew_enemy_sound, po=None, pl=None, hurts=None, explosions=None):
         if self.rect.y < display_height / 4 - (self.nr * 50):
             self.rect.y += self.vel
         else:
@@ -79,9 +79,9 @@ class Enemy(Enemies):
             self.threat = np.random.random_integers(100, thret)
             self.idle = 0
             projectile.add_projectile(self.rect.x, self.rect.y)
-            ## shot sound
+            pew_enemy_sound.play()
 
-    def collide(self, po):
+    def collide(self, po, hurts, explosions):
         for projectile in po.projectiles_left:
             rect = pg.Rect(projectile.x, projectile.y, 10, 10)
             if rect.colliderect(self.rect):
@@ -92,9 +92,9 @@ class Enemy(Enemies):
             if rect.colliderect(self.rect):
                 po.remove_off_screen(self.rect)
                 self.live -= 1
-                ## crack sound
+                hurts[np.random.random_integers(0, 2)].play()
         if self.live <= 0:
-            ## blow sound
+            explosions[np.random.random_integers(0, 5)].play()
             return True
         return False
 
