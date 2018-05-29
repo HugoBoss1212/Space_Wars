@@ -20,10 +20,10 @@ class Enemies:
     def draw(self, game_display):
         for enemy in self.enemies: enemy.draw(game_display)
 
-    def update(self, projectile, po, pl, pew_enemy_sound, hurts, explosions):
+    def update(self, projectile, po, pl, pew_enemy_sound, hurts, explosions, scraps):
         for enemy in self.enemies:
             enemy.update(projectile, pew_enemy_sound)
-            if enemy.collide(po, hurts, explosions):
+            if enemy.collide(po, hurts, explosions, scraps):
                 try:
                     self.enemies.remove(enemy)
                     pl.set_score(100)
@@ -55,7 +55,9 @@ class Enemy(Enemies):
 
     def draw(self, game_display): game_display.blit(self.image, self.rect)
 
-    def update(self, projectile, pew_enemy_sound, po=None, pl=None, hurts=None, explosions=None):
+    def update(self, projectile, pew_enemy_sound, po=None, pl=None, hurts=None, explosions=None, scraps=None):
+
+        # ----------- ENEMY PATH 01 ####
         if self.rect.y < display_height / 4 - (self.nr * 50):
             self.rect.y += self.vel
         else:
@@ -67,6 +69,7 @@ class Enemy(Enemies):
             else:
                 if self.rect.x + self.vel > display_width / 8: self.rect.x += self.vel
                 else: self.vel *= -1
+        # ------------------------ ####
 
         self.count += 1
         self.threat -= 1
@@ -81,7 +84,7 @@ class Enemy(Enemies):
             projectile.add_projectile(self.rect.x, self.rect.y)
             pew_enemy_sound.play()
 
-    def collide(self, po, hurts, explosions):
+    def collide(self, po, hurts, explosions, scraps):
         for projectile in po.projectiles_left:
             rect = pg.Rect(projectile.x, projectile.y, 10, 10)
             if rect.colliderect(self.rect):
@@ -95,9 +98,12 @@ class Enemy(Enemies):
                 hurts[np.random.random_integers(0, 2)].play()
         if self.live <= 0:
             explosions[np.random.random_integers(0, 5)].play()
+            self.spawn_scraps(scraps)
             return True
         return False
 
+    def spawn_scraps(self, scraps):
+        scraps.add_scraps(4, self.rect.x, self.rect.y, np.random.random_integers(2, 3))
 
 class Projectiles:
     def __init__(self):
@@ -142,3 +148,31 @@ class Projectile(Projectiles):
             return True
         else:
             return False
+
+
+class Scraps:
+    def __init__(self, speed, x, y):
+        super().__init__()
+        self.scraps_list = []
+
+        self.y = y
+        self.x = x
+        self.speed_x = np.random.uniform(-1.5, 1.5) * speed
+        self.speed_y = 2*speed - math.fabs(self.speed_x)
+        self.angle = math.atan((self.speed_x-self.speed_y)/1+(self.speed_x*self.speed_y))*180/math.pi
+        self.image = None
+        self.rect = self.image.get_rect()
+        self.rect.width *= 0.3
+        self.rect.height *= 0.3
+        self.rect.x = self.x
+        self.rect.y = self.y
+
+    def update(self):
+        pass
+
+    def draw(self, game_display):
+        pass
+
+    def add_scraps(self, speed, x, y, value):
+        for i in range(value):
+            self.scraps_list.append(Scraps(speed, x, y))
