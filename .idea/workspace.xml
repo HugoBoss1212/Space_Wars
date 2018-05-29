@@ -30,8 +30,8 @@
       <file leaf-file-name="enemy.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/enemy.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="274">
-              <caret line="166" column="59" lean-forward="false" selection-start-line="166" selection-start-column="59" selection-end-line="166" selection-end-column="59" />
+            <state relative-caret-position="250">
+              <caret line="15" column="70" lean-forward="false" selection-start-line="15" selection-start-column="70" selection-end-line="15" selection-end-column="70" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
@@ -788,7 +788,14 @@
       <option name="project" value="LOCAL" />
       <updated>1527618186103</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="dodanie animacji i metody update&#10;do szczątków przeciwników">
+      <created>1527619109386</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1527619109386</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TodoView">
@@ -861,8 +868,8 @@
     <MESSAGE value="trzymanie wyników przy zabiciu przeciwnika" />
     <MESSAGE value="dodanie dzwięków do przeciwników" />
     <MESSAGE value="dodanie wybuchu przeciwników" />
-    <option name="LAST_COMMIT_MESSAGE" value="dodanie wybuchu przeciwników" />
-    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
+    <MESSAGE value="dodanie animacji i metody update&#10;do szczątków przeciwników" />
+    <option name="LAST_COMMIT_MESSAGE" value="dodanie animacji i metody update&#10;do szczątków przeciwników" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1307,8 +1314,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/enemy.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="274">
-          <caret line="166" column="59" lean-forward="false" selection-start-line="166" selection-start-column="59" selection-end-line="166" selection-end-column="59" />
+        <state relative-caret-position="250">
+          <caret line="15" column="70" lean-forward="false" selection-start-line="15" selection-start-column="70" selection-end-line="15" selection-end-column="70" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
           </folding>

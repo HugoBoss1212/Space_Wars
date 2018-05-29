@@ -7,6 +7,13 @@ from constans import display_height, display_width, thret
 
 ENEMY = pg.image.load('res\\sprites\\enemy.png')
 PROJECTILE = pg.image.load('res\\sprites\\enemy_pro.png')
+ENEMY_SCRAP_01 = pg.image.load('res\\sprites\\enemy_scrap_01.png')
+ENEMY_SCRAP_02 = pg.image.load('res\\sprites\\enemy_scrap_02.png')
+ENEMY_SCRAP_03 = pg.image.load('res\\sprites\\enemy_scrap_03.png')
+ENEMY_SCRAP_04 = pg.image.load('res\\sprites\\enemy_scrap_04.png')
+ENEMY_SCRAP_05 = pg.image.load('res\\sprites\\enemy_scrap_05.png')
+ENEMY_SCRAPS_SET_01 = [ENEMY_SCRAP_01, ENEMY_SCRAP_02]
+ENEMY_SCRAPS_SET_02 = [ENEMY_SCRAP_03, ENEMY_SCRAP_04, ENEMY_SCRAP_05]
 
 
 class Enemies:
@@ -162,9 +169,9 @@ class Scraps:
         self.speed_y = -2*speed + math.fabs(self.speed_x)
         self.angle = math.atan((self.speed_x-self.speed_y)/1+(self.speed_x*self.speed_y))*180/math.pi
         if value == 2:
-            self.image = pg.transform.rotate(ENEMY_SCRAP_01[np.random.random_integers(0, 1)], self.angle)
+            self.image = pg.transform.rotate(ENEMY_SCRAPS_SET_01[np.random.random_integers(0, 1)], self.angle)
         else:
-            self.image = pg.transform.rotate(ENEMY_SCRAP_02[np.random.random_integers(0, 2)], self.angle)
+            self.image = pg.transform.rotate(ENEMY_SCRAPS_SET_02[np.random.random_integers(0, 2)], self.angle)
         self.rect = self.image.get_rect()
         self.rect.width *= 0.3
         self.rect.height *= 0.3
