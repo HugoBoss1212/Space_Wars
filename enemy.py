@@ -1,7 +1,9 @@
-import pygame as pg
-from constans import display_height, display_width, thret
 import math
+
 import numpy as np
+import pygame as pg
+
+from constans import display_height, display_width, thret
 
 ENEMY = pg.image.load('res\\sprites\\enemy.png')
 PROJECTILE = pg.image.load('res\\sprites\\enemy_pro.png')
@@ -18,8 +20,11 @@ class Enemies:
     def draw(self, game_display):
         for enemy in self.enemies: enemy.draw(game_display)
 
-    def update(self, projectile):
-        for enemy in self.enemies: enemy.update(projectile)
+    def update(self, projectile, po):
+        for enemy in self.enemies:
+            enemy.update(projectile)
+            if enemy.collide(po):
+                self.enemies.remove(enemy)
 
     def add_enemy(self):
         self.pos_y += 1
@@ -37,6 +42,7 @@ class Enemy(Enemies):
         self.rect = pg.Rect(x, y, 50, 50)
         self.vel = 4
         self.image = ENEMY
+        self.live = 3
         self.nr = nr
         self.count = 0
         self.threat = np.random.random_integers(100, thret)
@@ -45,7 +51,7 @@ class Enemy(Enemies):
 
     def draw(self, game_display): game_display.blit(self.image, self.rect)
 
-    def update(self, projectile):
+    def update(self, projectile, po=None):
         if self.rect.y < display_height / 4 - (self.nr * 50):
             self.rect.y += self.vel
         else:
@@ -69,6 +75,24 @@ class Enemy(Enemies):
             self.threat = np.random.random_integers(100, thret)
             self.idle = 0
             projectile.add_projectile(self.rect.x, self.rect.y)
+            ## shot sound
+
+    def collide(self, po):
+        for projectile in po.projectiles_left:
+            rect = pg.Rect(projectile.x, projectile.y, 10, 10)
+            if rect.colliderect(self.rect):
+                po.remove_off_screen(self.rect)
+                self.live -= 1
+        for projectile in po.projectiles_right:
+            rect = pg.Rect(projectile.x, projectile.y, 10, 10)
+            if rect.colliderect(self.rect):
+                po.remove_off_screen(self.rect)
+                self.live -= 1
+                ## crack sound
+        if self.live <= 0:
+            ## blow sound
+            return True
+        return False
 
 
 class Projectiles:

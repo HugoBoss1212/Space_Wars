@@ -18,20 +18,22 @@
 
 """ # --------------------------------------------------------------------------- #
 
-import pygame as pg
-import particle
-import projectiles
-import comet
-from constans import game_display, black, display_width, display_height,\
-                     white, gravity, start_lives, start_score, fps
-import main
 import _thread
-import player as pl
+
+import pygame as pg
+
+import comet
+import enemy
 import level_transition as lt
+import main
+import menu
+import particle
+import player as pl
+import projectiles
 import scraps
 import sparcles_effect as se
-import menu
-import enemy
+from constans import game_display, black, display_width, display_height, \
+    white, gravity, start_lives, start_score, fps
 
 pg.mixer.pre_init(44100, -16, 1, 512)
 pg.init()
@@ -100,6 +102,8 @@ def game_loop():
         # ----------- UPDATES ####
         if player.level == 3 and len(enemies.enemies) < 50:
             enemies.add_enemy()
+        elif player.level == 3:
+            player.level += 1
         projectiles_objects.update()
         particles_objects.update(player.level)
         comet_pos = comets_objects.update(pg.Rect(player.rect.x + 10, player.rect.y, 45, 85),
@@ -107,7 +111,7 @@ def game_loop():
         if comet_pos is not None:
             for i in range(3):
                 particles.append(se.ParticleBall(game_display, comet_pos, (0, -1), gravity, particles, sparkles, 20))
-        enemies.update(enemies_pro)
+        enemies.update(enemies_pro, projectiles_objects)
         enemies_pro.update(player)
         player.update()
         scrap_pos = scraps_objects.update(pg.Rect(player.rect.x + 10, player.rect.y, 45, 85),
