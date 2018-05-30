@@ -35,7 +35,7 @@ import sparcles_effect as se
 from constans import game_display, black, display_width, display_height, \
     white, gravity, start_lives, start_score, fps
 
-pg.mixer.pre_init(44100, -16, 2, 1024)
+pg.mixer.pre_init(44100, -16, 2, 2048)
 pg.init()
 pg.mixer.init()
 pg.display.set_caption('Space Wars')
@@ -140,9 +140,9 @@ def game_loop():
         game_display.fill(black)
         projectiles_objects.draw()
         particles_objects.draw(game_display)
-        comets_objects.draw(game_display)
         enemies.draw(game_display)
         scraps_objects_enemies.draw(game_display)
+        comets_objects.draw(game_display)
         player.draw(game_display)
         pl.draw_points(player.score, FONT_SMALL, game_display)
         scraps_objects.draw(game_display)
