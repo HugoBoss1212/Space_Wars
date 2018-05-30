@@ -124,7 +124,7 @@ def game_loop():
                        scraps_objects_enemies)
         enemies_pro.update(player)
         scraps_objects_enemies.update()
-        player.update()
+        player.update(enemies)
         scrap_pos = scraps_objects.update(pg.Rect(player.rect.x + 10, player.rect.y, 45, 85),
                                           player, projectiles_objects)
         if scrap_pos is not None:

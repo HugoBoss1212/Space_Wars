@@ -3,7 +3,8 @@ import math
 import numpy as np
 import pygame as pg
 
-from constans import display_height, display_width, thret
+from constans import display_height, display_width
+import constans
 
 ENEMY = pg.image.load('res\\sprites\\enemy.png')
 PROJECTILE = pg.image.load('res\\sprites\\enemy_pro.png')
@@ -23,11 +24,16 @@ class Enemies:
         self.pos_x = 0
         self.pos_y = 0
         self.projectile = Projectiles()
+        self.level_up = False
 
     def draw(self, game_display):
         for enemy in self.enemies: enemy.draw(game_display)
 
     def update(self, projectile, po, pl, pew_enemy_sound, hurts, explosions, scraps):
+        if len(self.enemies) <= 0 and pl.level > 3:
+            self.level_up = True
+        else:
+            self.level_up = False
         for enemy in self.enemies:
             enemy.update(projectile, pew_enemy_sound)
             if enemy.collide(po, hurts, explosions, scraps):
@@ -57,7 +63,7 @@ class Enemy(Enemies):
         self.live = 3
         self.nr = nr
         self.count = 0
-        self.threat = np.random.random_integers(100, thret)
+        self.threat = np.random.random_integers(100, constans.thret)
         if self.threat <= 20: self.idle = 1
         else: self.idle = 0
 
@@ -87,7 +93,7 @@ class Enemy(Enemies):
         else: self.idle = 0
 
         if self.threat <= 5:
-            self.threat = np.random.random_integers(100, thret)
+            self.threat = np.random.random_integers(100, constans.thret)
             self.idle = 0
             projectile.add_projectile(self.rect.x, self.rect.y)
             pew_enemy_sound.play()
