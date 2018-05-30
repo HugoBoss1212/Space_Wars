@@ -2,6 +2,7 @@ import pygame as pg
 import numpy as np
 from constans import display_width, display_height, comet_difficulty_speed, comets_size_difficulty, white, base
 import time as t
+import _thread
 
 COMET_SMALL = pg.image.load('res\\sprites\\rocks_small.png')
 COMET_MEDIUM_01 = pg.image.load('res\\sprites\\rocks_medium_01.png')
@@ -43,6 +44,9 @@ class Comet:
         self.size = comets_size_difficulty
 
     def update(self, rect, pl, po, so, explosions):
+        if pl.level == 8:
+            _thread.start_new_thread(self.add_comets, (5, ))
+            pl.level += 1
         explode_sound = explosions[np.random.random_integers(0, 5)]
         for comet in self.comets:
             comet.y += comet.speed
@@ -52,6 +56,8 @@ class Comet:
                 self.comets.remove(comet)
                 if pl.level <= 2:
                     self.comets.append(Comet())
+                elif pl.level >= 8:
+                    self.comets.append(Comet())
                 explode_sound.play()
                 pl.lives -= 1
                 pl.set_score(-20 * pl.lives * comet.live)
@@ -59,6 +65,8 @@ class Comet:
             if comet.y > display_height + 30:
                 self.comets.remove(comet)
                 if pl.level <= 2:
+                    self.comets.append(Comet())
+                elif pl.level >= 8:
                     self.comets.append(Comet())
                 self.base_health += display_height / base
                 if self.base_health >= display_height:
@@ -73,6 +81,8 @@ class Comet:
                     except ValueError:
                         pass
                     if pl.level <= 2:
+                        self.comets.append(Comet())
+                    elif pl.level >= 8:
                         self.comets.append(Comet())
                     explode_sound.play()
                     pl.set_score(30 * pl.lives)
@@ -98,7 +108,7 @@ class Comet:
 
     def add_comets(self, sleep):
         t.sleep(sleep)
-        for i in range(0, self.size): self.comets.append(Comet())
+        for i in range(0, np.random.random_integers(1, 2)): self.comets.append(Comet())
 
     @staticmethod
     def collide(rect, comet):
