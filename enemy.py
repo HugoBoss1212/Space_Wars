@@ -38,6 +38,7 @@ class Enemies:
                     pass
 
     def add_enemy(self):
+        # --------------- ENEMY SPAWN POS ####
         self.pos_y += 1
         if len(self.enemies) % 5 == 0:
             self.pos_x += 1
