@@ -35,7 +35,7 @@ import sparcles_effect as se
 from constans import game_display, black, display_width, display_height, \
     white, gravity, start_lives, start_score, fps
 
-pg.mixer.pre_init(44100, -16, 3, 512)
+pg.mixer.pre_init(44100, -16, 2, 1024)
 pg.init()
 pg.mixer.init()
 pg.display.set_caption('Space Wars')
@@ -106,12 +106,11 @@ def game_loop():
             projectiles_objects.get_event(event, player.rect, PEW_SOUND, particles, sparkles)
 
         # ----------- UPDATES ####
-        # ----------- ENEMY SPAWN ####
+        # ----------- ENEMY SPAWN INIT ####
         if player.level == 3 and len(enemies.enemies) < 50:
             enemies.add_enemy()
         elif player.level == 3:
             player.level += 1
-        # ----------------------- #### TODO wypiepszyc do innej klasy
 
         projectiles_objects.update()
         particles_objects.update(player.level)
