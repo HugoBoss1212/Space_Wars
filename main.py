@@ -83,7 +83,7 @@ def game_loop():
     _thread.start_new_thread(comets_objects.add_comets, (10, ))
     level_transition = lt.LevelTransition(0, -400, game_display, white, 3, FONT, display_width, display_height + 400)
     scraps_objects = scraps.Scraps(0, 0, 0, 0)
-    scraps_objects_enemies = enemy.Scraps()
+    scraps_objects_enemies = enemy.Scraps(0, 0, 0, 0)
     particles = []
     sparkles = []
     exit_ = False
