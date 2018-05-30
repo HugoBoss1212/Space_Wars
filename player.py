@@ -94,8 +94,10 @@ class Player(pg.sprite.Sprite):
     def level_up(self):
         constans.comets_size_difficulty += 1
         constans.comet_difficulty_speed += 1
-        if self.level > 3:
-            constans.thret -= 750
+        if self.level > 3 and constans.thret > 430:
+            constans.thret -= 400
+        elif self.level > 3 and constans.thret > 50:
+            constans.thret -= 20
         self.level += 1
 
     def player_hit(self):
