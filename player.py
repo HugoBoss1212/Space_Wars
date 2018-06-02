@@ -31,6 +31,7 @@ class Player(pg.sprite.Sprite):
             game_display.blit(pg.transform.scale(PLAYER_UP_DOWN, (int(65*0.5), int(100*0.5))), (5+(i*65*0.5), 50))
 
     def update(self, enemies, comets):
+        constans.score = self.score
         self.bounds()
         self.rect.x += self.movement_x
         self.rect.y += self.movement_y

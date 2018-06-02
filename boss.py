@@ -1,5 +1,6 @@
 import pygame as pg
-from constans import display_width, red, black, display_height, base
+from constans import display_width, red, red_gun, display_height, base
+import constans
 import numpy as np
 import time
 
@@ -14,6 +15,7 @@ class Boss:
         self.parts = []
         self.bonuses = []
 
+        self.check = False
         self.nr = nr
         self.x = x
         self.y = y
@@ -21,8 +23,9 @@ class Boss:
         self.live = 2
         self.gun = np.random.random_integers(0, 60)
         if self.gun == 0:
-            self.color = black
+            self.color = red_gun
             self.threat = np.random.random_integers(300, 400)
+            constans.to_win += 1
         else:
             self.color = red
             self.threat = -100
@@ -45,7 +48,8 @@ class Boss:
             if part.rect.y < 250 - (part.nr * 10): part.rect.y += 1
             if part.threat > 0: part.threat -= 1
             if part.live <= 0:
-                if part.gun >= 58: self.bonuses.append(Bonus(part.rect.x, part.rect.y, np.random.random_integers(0,1)))
+                if part.gun >= 58: self.bonuses.append(Bonus(part.rect.x, part.rect.y, np.random.random_integers(0, 1)))
+                if part.gun == 0: constans.to_win -= 1
                 self.parts.remove(part)
                 pl.score += 150
                 blow_sound[np.random.random_integers(0, 5)].play()

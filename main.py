@@ -34,7 +34,7 @@ from constans import game_display, black, display_width, display_height, \
     white, gravity, start_lives, start_score, fps
 import constans
 
-pg.mixer.pre_init(44100, -16, 2, 2048)
+pg.mixer.pre_init(44100, -16, 1, 512)
 pg.init()
 pg.mixer.init()
 pg.display.set_caption('Space Wars')
@@ -71,7 +71,7 @@ def game_loop():
 
     # ----------- INIT ####
     pg.mixer.music.play(-1)
-    player = pl.Player(pl.PLAYER_UP_DOWN, start_lives, start_score, 10)
+    player = pl.Player(pl.PLAYER_UP_DOWN, start_lives, start_score, 1)
     player.rect.center = display_width * 0.5 - 33, display_height * 0.8
     enemies = enemy.Enemies()
     enemies_pro = enemy.Projectiles()
@@ -133,8 +133,7 @@ def game_loop():
             for i in range(3):
                 particles.append(se.ParticleBall(game_display, comet_pos, (0, -1), gravity, particles, sparkles, 20))
         if boss_pos is not None:
-            for i in range(3):
-                particles.append(se.ParticleBall(game_display, boss_pos, (0, -1), gravity, particles, sparkles, 20))
+            particles.append(se.ParticleBall(game_display, boss_pos, (0, -1), gravity, particles, sparkles, 20))
         if scrap_pos is not None:
             particles.append(se.ParticleBall(game_display, scrap_pos, (0, -1), gravity, particles, sparkles, 12))
         for p in particles:
