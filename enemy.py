@@ -35,7 +35,7 @@ class Enemies:
         else:
             self.level_up = False
         for enemy in self.enemies:
-            enemy.update(projectile, pew_enemy_sound)
+            enemy.update(projectile, pew_enemy_sound, None, pl)
             if enemy.collide(po, hurts, explosions, scraps):
                 try:
                     self.enemies.remove(enemy)
@@ -71,19 +71,32 @@ class Enemy(Enemies):
 
     def update(self, projectile, pew_enemy_sound, po=None, pl=None, hurts=None, explosions=None, scraps=None):
 
-        # ----------- ENEMY PATH 01 ####
-        if self.rect.y < display_height / 4 - (self.nr * 50):
-            self.rect.y += self.vel
-        else:
-            if math.fabs(self.vel) != 0 and self.vel > 0: self.vel -= 0.1
-            elif math.fabs(self.vel) != 0 and self.vel < 0: self.vel += 0.1
-            if self.vel > 0:
-                if self.rect.x + self.vel < display_width - (display_width / 8): self.rect.x += self.vel
-                else: self.vel *= -1
+        if pl.level <= 7:
+            # ----------- ENEMY PATH 01 ####
+            if self.rect.y < display_height / 4 - (self.nr * 50):
+                self.rect.y += self.vel
             else:
-                if self.rect.x + self.vel > display_width / 8: self.rect.x += self.vel
-                else: self.vel *= -1
-        # ------------------------ ####
+                if math.fabs(self.vel) != 0 and self.vel > 0: self.vel -= 0.1
+                elif math.fabs(self.vel) != 0 and self.vel < 0: self.vel += 0.1
+                if self.vel > 0:
+                    if self.rect.x + self.vel < display_width - (display_width / 8): self.rect.x += self.vel
+                    else: self.vel *= -1
+                else:
+                    if self.rect.x + self.vel > display_width / 8: self.rect.x += self.vel
+                    else: self.vel *= -1
+            # ------------------------ ####
+        else:
+            # ----------- ENEMY PATH 02 ####
+            if self.rect.y < display_height / 4 - (self.nr * 50):
+                self.rect.y += self.vel
+            else:
+                if self.vel > 0:
+                    if self.rect.x + self.vel < display_width - (display_width / 8): self.rect.x += self.vel
+                    else: self.vel *= -1
+                else:
+                    if self.rect.x + self.vel > display_width / 8: self.rect.x += self.vel
+                    else: self.vel *= -1
+            # ------------------------ ####
 
         self.count += 1
         self.threat -= 1

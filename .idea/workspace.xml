@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="47803e8d-b93f-402c-9da8-12b4406bda16" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/sprites/projectal.png" afterPath="$PROJECT_DIR$/res/sprites/projectal.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/comet.py" afterPath="$PROJECT_DIR$/comet.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/constans.py" afterPath="$PROJECT_DIR$/constans.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main.py" afterPath="$PROJECT_DIR$/main.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/menu.py" afterPath="$PROJECT_DIR$/menu.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/enemy.py" afterPath="$PROJECT_DIR$/enemy.py" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -43,11 +40,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="constans.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="constans.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/constans.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="289">
               <caret line="17" column="9" lean-forward="false" selection-start-line="17" selection-start-column="9" selection-end-line="17" selection-end-column="9" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="enemy.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/enemy.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="370">
+              <caret line="91" column="17" lean-forward="false" selection-start-line="91" selection-start-column="17" selection-end-line="91" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -106,12 +113,12 @@
         <option value="$PROJECT_DIR$/sparcles_effect.py" />
         <option value="$PROJECT_DIR$/scraps.py" />
         <option value="$PROJECT_DIR$/projectiles.py" />
-        <option value="$PROJECT_DIR$/enemy.py" />
         <option value="$PROJECT_DIR$/player.py" />
         <option value="$PROJECT_DIR$/constans.py" />
         <option value="$PROJECT_DIR$/comet.py" />
         <option value="$PROJECT_DIR$/menu.py" />
         <option value="$PROJECT_DIR$/main.py" />
+        <option value="$PROJECT_DIR$/enemy.py" />
       </list>
     </option>
   </component>
@@ -821,7 +828,14 @@
       <option name="project" value="LOCAL" />
       <updated>1527695861942</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="code refactor">
+      <created>1527938874310</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1527938874310</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TodoView">
@@ -879,7 +893,6 @@
     <MESSAGE value="dodanie zycia bazy" />
     <MESSAGE value="game over screen" />
     <MESSAGE value="dodanie przeciwików na poziomie 3&#10;umiejetnosc strzelania i niszczenie playera" />
-    <MESSAGE value="code refactor" />
     <MESSAGE value="dodanie res" />
     <MESSAGE value="enemy progres" />
     <MESSAGE value="dodanie ginięcia wrogów i ich życia" />
@@ -895,7 +908,8 @@
     <MESSAGE value="code reformat" />
     <MESSAGE value="dodanie komet na 8 poziomie" />
     <MESSAGE value="code refactor zmiana tekstury przeciwnika" />
-    <option name="LAST_COMMIT_MESSAGE" value="code refactor zmiana tekstury przeciwnika" />
+    <MESSAGE value="code refactor" />
+    <option name="LAST_COMMIT_MESSAGE" value="code refactor" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1054,13 +1068,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/enemy.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2629">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/menu.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="493">
@@ -1095,6 +1102,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
           <caret line="17" column="9" lean-forward="false" selection-start-line="17" selection-start-column="9" selection-end-line="17" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/enemy.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="370">
+          <caret line="91" column="17" lean-forward="false" selection-start-line="91" selection-start-column="17" selection-end-line="91" selection-end-column="17" />
           <folding />
         </state>
       </provider>
