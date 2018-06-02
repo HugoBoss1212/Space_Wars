@@ -106,9 +106,9 @@ class Comet:
         else:
             return False
 
-    def add_comets(self, sleep):
+    def add_comets(self, sleep, value=np.random.random_integers(1, 2)):
         t.sleep(sleep)
-        for i in range(0, np.random.random_integers(1, 2)): self.comets.append(Comet())
+        for i in range(0, value): self.comets.append(Comet())
 
     @staticmethod
     def collide(rect, comet):

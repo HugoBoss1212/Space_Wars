@@ -1,6 +1,6 @@
 import pygame as pg
 from constans import game_display, display_width, display_height, black, white
-import main
+import constans
 
 
 class Menu:
@@ -29,7 +29,7 @@ class Menu:
         text_rect[2].center = (display_width / 2, display_height / 2 - 128)
         self.game_display.blit(text_surf[0], text_rect[0])
         self.game_display.blit(text_surf[1], text_rect[1])
-        if main.player_dead:
+        if constans.player_dead:
             self.game_display.blit(text_surf[2], text_rect[2])
 
     def get_event(self, event):

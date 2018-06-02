@@ -17,3 +17,4 @@ start_score = 50
 fps = 60
 base = 10
 thret = 3000
+player_dead = False

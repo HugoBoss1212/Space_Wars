@@ -19,13 +19,10 @@
 """ # --------------------------------------------------------------------------- #
 
 import _thread
-
 import pygame as pg
-
 import comet
 import enemy
 import level_transition as lt
-import main
 import menu
 import particle
 import player as pl
@@ -34,13 +31,13 @@ import scraps
 import sparcles_effect as se
 from constans import game_display, black, display_width, display_height, \
     white, gravity, start_lives, start_score, fps
+import constans
 
 pg.mixer.pre_init(44100, -16, 2, 2048)
 pg.init()
 pg.mixer.init()
 pg.display.set_caption('Space Wars')
 clock = pg.time.Clock()
-player_dead = False
 pg.mixer.music.load('res\\music\\MyVeryOwnDeadShip.ogg')
 FONT = pg.font.Font('res\\fonts\\Computerfont.ttf', 62)
 FONT_SMALL = pg.font.Font('res\\fonts\\Computerfont.ttf', 32)
@@ -80,7 +77,7 @@ def game_loop():
     particles_objects = particle.Particle()
     particles_objects.add_particles()
     comets_objects = comet.Comet()
-    _thread.start_new_thread(comets_objects.add_comets, (10, ))
+    _thread.start_new_thread(comets_objects.add_comets, (10, 5))
     level_transition = lt.LevelTransition(0, -400, game_display, white, 3, FONT, display_width, display_height + 400)
     scraps_objects = scraps.Scraps(0, 0, 0, 0)
     scraps_objects_enemies = enemy.Scraps(0, 0, 0, 0)
@@ -89,7 +86,7 @@ def game_loop():
     exit_ = False
 
     while not player.is_dead:
-        main.player_dead = True
+        constans.player_dead = True
 
         # ----------- HANDLING EVENTS ####
         for event in pg.event.get():
