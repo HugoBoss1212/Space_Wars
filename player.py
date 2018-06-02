@@ -83,9 +83,10 @@ class Player(pg.sprite.Sprite):
         elif enemies.level_up:
             self.level_up()
             if comet.base_health > 0: comet.base_health -= (display_height / base) * 5
-            self.spawn = True
-            enemies.pos_y = 0
-            enemies.pos_x = 0
+            if self.level < 10:
+                self.spawn = True
+                enemies.pos_y = 0
+                enemies.pos_x = 0
 
         if len(enemies.enemies) < 50 and self.spawn:
             enemies.add_enemy()

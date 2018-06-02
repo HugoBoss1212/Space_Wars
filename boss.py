@@ -16,7 +16,7 @@ class Boss:
         self.y = y
         self.rect = pg.Rect(x, y, 10, 10)
         self.live = 2
-        self.gun = np.random.random_integers(0, 50)
+        self.gun = np.random.random_integers(0, 60)
         if self.gun == 0:
             self.color = black
             self.threat = np.random.random_integers(300, 400)
@@ -35,6 +35,7 @@ class Boss:
             if part.live <= 0:
                 self.parts.remove(part)
                 blow_sound[np.random.random_integers(0, 5)].play()
+                return part.rect.x + part.rect.width / 2, part.y + part.rect.height / 2
             if -50 < part.threat <= 0 and part.gun == 0:
                 part.shot(part, boss_por, pew_sound)
 

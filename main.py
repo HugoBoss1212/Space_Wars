@@ -70,13 +70,12 @@ def game_loop():
 
     # ----------- INIT ####
     pg.mixer.music.play(-1)
-    player = pl.Player(pl.PLAYER_UP_DOWN, start_lives, start_score, 1)
+    player = pl.Player(pl.PLAYER_UP_DOWN, start_lives, start_score, 10)
     player.rect.center = display_width * 0.5 - 33, display_height * 0.8
     enemies = enemy.Enemies()
     enemies_pro = enemy.Projectiles()
     boss_obj = boss.Boss(0, -300, -1)
     boss_pro = boss.Projectiles()
-    # _thread.start_new_thread(boss_obj.create_boss, (5, ))
     projectiles_objects = projectiles.Projectiles()
     particles_objects = particle.Particle()
     particles_objects.add_particles()
@@ -112,23 +111,29 @@ def game_loop():
             enemies.add_enemy()
         elif player.level == 3:
             player.level += 1
+        if player.level == 10:
+            _thread.start_new_thread(boss_obj.create_boss, (5, ))
+            player.level += 1
 
         projectiles_objects.update()
         particles_objects.update(player.level)
         comet_pos = comets_objects.update(pg.Rect(player.rect.x + 10, player.rect.y, 45, 85),
                                           player, projectiles_objects, scraps_objects, EXPLOSIONS)
-        if comet_pos is not None:
-            for i in range(3):
-                particles.append(se.ParticleBall(game_display, comet_pos, (0, -1), gravity, particles, sparkles, 20))
         enemies.update(enemies_pro, projectiles_objects, player, PEW_ENEMY_SOUND, HURTS, EXPLOSIONS,
                        scraps_objects_enemies)
         enemies_pro.update(player)
-        boss_obj.update(EXPLOSIONS, projectiles_objects, boss_pro, PEW_ENEMY_SOUND)
+        boss_pos = boss_obj.update(EXPLOSIONS, projectiles_objects, boss_pro, PEW_ENEMY_SOUND)
         boss_pro.update(player)
         scraps_objects_enemies.update()
         player.update(enemies, comets_objects)
         scrap_pos = scraps_objects.update(pg.Rect(player.rect.x + 10, player.rect.y, 45, 85),
                                           player, projectiles_objects)
+        if comet_pos is not None:
+            for i in range(3):
+                particles.append(se.ParticleBall(game_display, comet_pos, (0, -1), gravity, particles, sparkles, 20))
+        if boss_pos is not None:
+            for i in range(3):
+                particles.append(se.ParticleBall(game_display, boss_pos, (0, -1), gravity, particles, sparkles, 20))
         if scrap_pos is not None:
             particles.append(se.ParticleBall(game_display, scrap_pos, (0, -1), gravity, particles, sparkles, 12))
         for p in particles:
@@ -150,11 +155,11 @@ def game_loop():
         player.draw(game_display)
         pl.draw_points(player.score, FONT_SMALL, game_display)
         scraps_objects.draw(game_display)
-        for p in particles: p.draw()
-        for s in sparkles: s.draw()
         enemies_pro.draw(game_display)
         boss_pro.draw(game_display)
         level_transition.update(player.level)
+        for p in particles: p.draw()
+        for s in sparkles: s.draw()
 
         pg.display.update()
         clock.tick(fps)
