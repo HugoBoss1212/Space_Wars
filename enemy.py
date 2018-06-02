@@ -32,7 +32,6 @@ class Enemies:
         for enemy in self.enemies: enemy.draw(game_display)
 
     def update(self, projectile, po, pl, pew_enemy_sound, hurts, explosions, scraps):
-        print(len(self.enemies))
         if len(self.enemies) <= 0 and pl.level > 3:
             self.level_up = True
         else:

@@ -44,6 +44,7 @@ class Comet:
         self.size = comets_size_difficulty
 
     def update(self, rect, pl, po, so, explosions):
+        if self.base_health < 0: self.base_health = 0
         if pl.level == 8:
             _thread.start_new_thread(self.add_comets, (5, ))
             pl.level += 1
