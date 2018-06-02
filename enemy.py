@@ -6,6 +6,7 @@ import pygame as pg
 from constans import display_height, display_width
 import constans
 import time
+import _thread
 
 ENEMY = pg.image.load('res\\sprites\\enemy.png')
 PROJECTILE = pg.image.load('res\\sprites\\enemy_pro.png')
@@ -31,6 +32,7 @@ class Enemies:
         for enemy in self.enemies: enemy.draw(game_display)
 
     def update(self, projectile, po, pl, pew_enemy_sound, hurts, explosions, scraps):
+        print(len(self.enemies))
         if len(self.enemies) <= 0 and pl.level > 3:
             self.level_up = True
         else:
@@ -40,16 +42,9 @@ class Enemies:
             if enemy.collide(po, hurts, explosions, scraps):
                 try:
                     self.enemies.remove(enemy)
-                    print(len(self.enemies))
                     pl.set_score(100)
                 except ValueError:
                     pass
-
-    def remove_errors(self, sleep):
-        time.sleep(sleep)
-        for enemy in self.enemies:
-            if enemy.rect.y < 0:
-                self.enemies.remove(enemy)
 
     def add_enemy(self):
         # --------------- ENEMY SPAWN POS ####
@@ -131,9 +126,12 @@ class Enemy(Enemies):
                 po.remove_off_screen(self.rect)
                 self.live -= 1
                 hurts[np.random.random_integers(0, 2)].play()
+        if self.rect.y < -1000:
+            return True
         if self.live <= 0:
             explosions[np.random.random_integers(0, 5)].play()
             self.spawn_scraps(scraps)
+            self.rect.y = -10000
             return True
         return False
 

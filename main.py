@@ -77,7 +77,7 @@ def game_loop():
     particles_objects = particle.Particle()
     particles_objects.add_particles()
     comets_objects = comet.Comet()
-    _thread.start_new_thread(comets_objects.add_comets, (10, 4))
+    _thread.start_new_thread(comets_objects.add_comets, (10, 1))
     level_transition = lt.LevelTransition(0, -400, game_display, white, 3, FONT, display_width, display_height + 400)
     scraps_objects = scraps.Scraps(0, 0, 0, 0)
     scraps_objects_enemies = enemy.Scraps(0, 0, 0, 0)

@@ -1,7 +1,6 @@
 import pygame as pg
-from constans import display_height, display_width, white
+from constans import display_height, display_width, white, base
 import constans
-import _thread
 
 PLAYER_UP_DOWN = pg.image.load('res\\sprites\\player_up_down.png')
 PLAYER_LEFT = pg.image.load('res\\sprites\\player_left.png')
@@ -83,7 +82,8 @@ class Player(pg.sprite.Sprite):
         elif self.score >= 8000 and self.level == 4: self.level_up()
         elif enemies.level_up:
             self.level_up()
-            if comet.base_health >= 0: comet.base_health -= 10
+            if comet.base_health > 0: comet.base_health -= (display_height / base) * 5
+            else: comet.base_health = 0
             self.spawn = True
             enemies.pos_y = 0
             enemies.pos_x = 0
@@ -91,7 +91,6 @@ class Player(pg.sprite.Sprite):
         if len(enemies.enemies) < 50 and self.spawn:
             enemies.add_enemy()
         elif self.spawn:
-            _thread.start_new_thread(enemies.remove_errors, (5, ))
             self.spawn = False
 
     def level_up(self):
