@@ -28,6 +28,7 @@ import particle
 import player as pl
 import projectiles
 import scraps
+import boss
 import sparcles_effect as se
 from constans import game_display, black, display_width, display_height, \
     white, gravity, start_lives, start_score, fps
@@ -73,6 +74,9 @@ def game_loop():
     player.rect.center = display_width * 0.5 - 33, display_height * 0.8
     enemies = enemy.Enemies()
     enemies_pro = enemy.Projectiles()
+    boss_obj = boss.Boss(0, -300, -1)
+    boss_pro = boss.Projectiles()
+    # _thread.start_new_thread(boss_obj.create_boss, (5, ))
     projectiles_objects = projectiles.Projectiles()
     particles_objects = particle.Particle()
     particles_objects.add_particles()
@@ -119,6 +123,8 @@ def game_loop():
         enemies.update(enemies_pro, projectiles_objects, player, PEW_ENEMY_SOUND, HURTS, EXPLOSIONS,
                        scraps_objects_enemies)
         enemies_pro.update(player)
+        boss_obj.update(EXPLOSIONS, projectiles_objects, boss_pro, PEW_ENEMY_SOUND)
+        boss_pro.update(player)
         scraps_objects_enemies.update()
         player.update(enemies, comets_objects)
         scrap_pos = scraps_objects.update(pg.Rect(player.rect.x + 10, player.rect.y, 45, 85),
@@ -140,12 +146,14 @@ def game_loop():
         enemies.draw(game_display)
         scraps_objects_enemies.draw(game_display)
         comets_objects.draw(game_display)
+        boss_obj.draw(game_display)
         player.draw(game_display)
         pl.draw_points(player.score, FONT_SMALL, game_display)
         scraps_objects.draw(game_display)
         for p in particles: p.draw()
         for s in sparkles: s.draw()
         enemies_pro.draw(game_display)
+        boss_pro.draw(game_display)
         level_transition.update(player.level)
 
         pg.display.update()

@@ -5,8 +5,6 @@ import pygame as pg
 
 from constans import display_height, display_width
 import constans
-import time
-import _thread
 
 ENEMY = pg.image.load('res\\sprites\\enemy.png')
 PROJECTILE = pg.image.load('res\\sprites\\enemy_pro.png')
