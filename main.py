@@ -44,6 +44,7 @@ FONT = pg.font.Font('res\\fonts\\Computerfont.ttf', 62)
 FONT_SMALL = pg.font.Font('res\\fonts\\Computerfont.ttf', 32)
 PEW_SOUND = pg.mixer.Sound('res\\sounds\\pew.wav')
 PEW_ENEMY_SOUND = pg.mixer.Sound('res\\sounds\\pew_enemy.wav')
+UP_SOUND = pg.mixer.Sound('res\\sounds\\up_sound.wav')
 EXPLOSION_01 = pg.mixer.Sound('res\\sounds\\exp_01.wav')
 EXPLOSION_02 = pg.mixer.Sound('res\\sounds\\exp_02.wav')
 EXPLOSION_03 = pg.mixer.Sound('res\\sounds\\exp_03.wav')
@@ -84,7 +85,6 @@ def game_loop():
     level_transition = lt.LevelTransition(0, -400, game_display, white, 3, FONT, display_width, display_height + 400)
     scraps_objects = scraps.Scraps(0, 0, 0, 0)
     scraps_objects_enemies = enemy.Scraps(0, 0, 0, 0)
-    bonuses = boss.Bonus(0, 0)
     particles = []
     sparkles = []
     exit_ = False
@@ -123,11 +123,10 @@ def game_loop():
         enemies.update(enemies_pro, projectiles_objects, player, PEW_ENEMY_SOUND, HURTS, EXPLOSIONS,
                        scraps_objects_enemies)
         enemies_pro.update(player)
-        boss_pos = boss_obj.update(EXPLOSIONS, projectiles_objects, boss_pro, PEW_ENEMY_SOUND, player)
+        boss_pos = boss_obj.update(EXPLOSIONS, projectiles_objects, boss_pro, PEW_ENEMY_SOUND, player, comets_objects, UP_SOUND)
         boss_pro.update(player)
         scraps_objects_enemies.update()
         player.update(enemies, comets_objects)
-        bonuses.update(player, comets_objects)
         scrap_pos = scraps_objects.update(pg.Rect(player.rect.x + 10, player.rect.y, 45, 85),
                                           player, projectiles_objects)
         if comet_pos is not None:
@@ -159,7 +158,6 @@ def game_loop():
         scraps_objects.draw(game_display)
         enemies_pro.draw(game_display)
         boss_pro.draw(game_display)
-        bonuses.draw(game_display)
         level_transition.update(player.level)
         for p in particles: p.draw()
         for s in sparkles: s.draw()

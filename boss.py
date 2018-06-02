@@ -6,6 +6,7 @@ import time
 
 PROJECTILE = pg.image.load('res\\sprites\\enemy_pro.png')
 BASE_LIVE_UP = pg.image.load('res\\sprites\\base_live_up.png')
+PLAYER_LIVE_UP = pg.image.load('res\\sprites\\player_live_up.png')
 
 
 class Boss:
@@ -29,13 +30,22 @@ class Boss:
     def draw(self, game_display):
         for part in self.parts:
             pg.draw.rect(game_display, part.color, part.rect)
+        if len(self.bonuses) > 0:
+            for bonus in self.bonuses:
+                bonus.draw(game_display)
 
-    def update(self, blow_sound, pl_pro, boss_por, pew_sound, pl):
+    def update(self, blow_sound, pl_pro, boss_por, pew_sound, pl, comet, up_sound):
+        if len(self.bonuses) > 0:
+            for bonus in self.bonuses:
+                if bonus.update(pl, comet):
+                    self.bonuses.remove(bonus)
+                    up_sound.play()
+
         for part in self.parts:
             if part.rect.y < 250 - (part.nr * 10): part.rect.y += 1
             if part.threat > 0: part.threat -= 1
             if part.live <= 0:
-                if part.gun == 30: self.bonuses.append(Bonus(part.x, part.y))
+                if part.gun >= 58: self.bonuses.append(Bonus(part.rect.x, part.rect.y, np.random.random_integers(0,1)))
                 self.parts.remove(part)
                 pl.score += 150
                 blow_sound[np.random.random_integers(0, 5)].play()
@@ -114,16 +124,25 @@ class Projectile(Projectiles):
 
 
 class Bonus:
-    def __init__(self, x, y):
+    def __init__(self, x, y, id_):
         self.x = x
         self.y = y
         self.rect = pg.Rect(self.x, self.y, 20, 20)
-        self.image = BASE_LIVE_UP
+        self.id_ = id_
+        if id_ == 0:
+            self.image = BASE_LIVE_UP
+        else:
+            self.image = PLAYER_LIVE_UP
 
     def update(self, pl, comet):
         self.rect.y += 2
-        if pl.rect.coliderect(self.rect):
-            if comet.base_health > 0: comet.base_health -= (display_height / base) * 5
+        if pl.rect.colliderect(self.rect):
+            if self.id_ == 0:
+                if comet.base_health > 0: comet.base_health -= (display_height / base) * 2
+            else:
+                if pl.lives < 4: pl.lives += 1
+            return True
+        return False
 
     def draw(self, game_display):
         game_display.blit(self.image, (self.rect.x, self.rect.y))

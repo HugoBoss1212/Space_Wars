@@ -1,6 +1,6 @@
 import pygame as pg
 import numpy as np
-from constans import display_width, display_height, comet_difficulty_speed, comets_size_difficulty, white, base
+from constans import display_width, display_height, comet_difficulty_speed, comets_size_difficulty, green, base
 import time as t
 import _thread
 
@@ -95,7 +95,7 @@ class Comet:
         return None
 
     def draw(self, game_display):
-        pg.draw.rect(game_display, white, (display_width - 20, self.base_health, 20, display_height))
+        pg.draw.rect(game_display, green, (display_width - 20, self.base_health, 20, display_height))
         for comet in self.comets:
             game_display.blit(pg.transform.scale(comet.image, (int(comet.rect.width), int(comet.rect.height))),
                                                 (comet.x, comet.y))
