@@ -1,15 +1,17 @@
 import pygame as pg
-from constans import display_width, red, black, display_height
+from constans import display_width, red, black, display_height, base
 import numpy as np
 import time
 
 
 PROJECTILE = pg.image.load('res\\sprites\\enemy_pro.png')
+BASE_LIVE_UP = pg.image.load('res\\sprites\\base_live_up.png')
 
 
 class Boss:
     def __init__(self, x, y, nr):
         self.parts = []
+        self.bonuses = []
 
         self.nr = nr
         self.x = x
@@ -28,12 +30,14 @@ class Boss:
         for part in self.parts:
             pg.draw.rect(game_display, part.color, part.rect)
 
-    def update(self, blow_sound, pl_pro, boss_por, pew_sound):
+    def update(self, blow_sound, pl_pro, boss_por, pew_sound, pl):
         for part in self.parts:
             if part.rect.y < 250 - (part.nr * 10): part.rect.y += 1
             if part.threat > 0: part.threat -= 1
             if part.live <= 0:
+                if part.gun == 30: self.bonuses.append(Bonus(part.x, part.y))
                 self.parts.remove(part)
+                pl.score += 150
                 blow_sound[np.random.random_integers(0, 5)].play()
                 return part.rect.x + part.rect.width / 2, part.y + part.rect.height / 2
             if -50 < part.threat <= 0 and part.gun == 0:
@@ -107,3 +111,19 @@ class Projectile(Projectiles):
             return True
         else:
             return False
+
+
+class Bonus:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+        self.rect = pg.Rect(self.x, self.y, 20, 20)
+        self.image = BASE_LIVE_UP
+
+    def update(self, pl, comet):
+        self.rect.y += 2
+        if pl.rect.coliderect(self.rect):
+            if comet.base_health > 0: comet.base_health -= (display_height / base) * 5
+
+    def draw(self, game_display):
+        game_display.blit(self.image, (self.rect.x, self.rect.y))
