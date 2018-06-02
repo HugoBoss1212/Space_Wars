@@ -1,6 +1,7 @@
 import pygame as pg
 from constans import display_height, display_width, white
 import constans
+import _thread
 
 PLAYER_UP_DOWN = pg.image.load('res\\sprites\\player_up_down.png')
 PLAYER_LEFT = pg.image.load('res\\sprites\\player_left.png')
@@ -30,7 +31,7 @@ class Player(pg.sprite.Sprite):
         for i in range(0, self.lives):
             game_display.blit(pg.transform.scale(PLAYER_UP_DOWN, (int(65*0.5), int(100*0.5))), (5+(i*65*0.5), 50))
 
-    def update(self, enemies):
+    def update(self, enemies, comets):
         self.bounds()
         self.rect.x += self.movement_x
         self.rect.y += self.movement_y
@@ -42,7 +43,7 @@ class Player(pg.sprite.Sprite):
         if self.lives == 0 or self.score < -500:
             self.is_dead = True
             self.level = 1
-        self.level_progress(enemies)
+        self.level_progress(enemies, comets)
         self.player_hit()
 
     def get_event(self, event):
@@ -75,20 +76,22 @@ class Player(pg.sprite.Sprite):
             self.rect.y -= 1
             self.image = PLAYER_UP_DOWN
 
-    def level_progress(self, enemies):
+    def level_progress(self, enemies, comet):
         if 2000 >= self.score >= 1000 and self.level == 1: self.level_up()
         elif 4000 >= self.score >= 2000 and self.level == 2: self.level_up()
         elif 8000 >= self.score >= 4000 and self.level == 3: self.level_up()
         elif self.score >= 8000 and self.level == 4: self.level_up()
         elif enemies.level_up:
             self.level_up()
+            if comet.base_health >= 0: comet.base_health -= 10
             self.spawn = True
             enemies.pos_y = 0
             enemies.pos_x = 0
 
         if len(enemies.enemies) < 50 and self.spawn:
             enemies.add_enemy()
-        else:
+        elif self.spawn:
+            _thread.start_new_thread(enemies.remove_errors, (5, ))
             self.spawn = False
 
     def level_up(self):

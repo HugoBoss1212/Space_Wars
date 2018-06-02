@@ -5,6 +5,7 @@ import pygame as pg
 
 from constans import display_height, display_width
 import constans
+import time
 
 ENEMY = pg.image.load('res\\sprites\\enemy.png')
 PROJECTILE = pg.image.load('res\\sprites\\enemy_pro.png')
@@ -39,9 +40,16 @@ class Enemies:
             if enemy.collide(po, hurts, explosions, scraps):
                 try:
                     self.enemies.remove(enemy)
+                    print(len(self.enemies))
                     pl.set_score(100)
                 except ValueError:
                     pass
+
+    def remove_errors(self, sleep):
+        time.sleep(sleep)
+        for enemy in self.enemies:
+            if enemy.rect.y < 0:
+                self.enemies.remove(enemy)
 
     def add_enemy(self):
         # --------------- ENEMY SPAWN POS ####

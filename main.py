@@ -77,7 +77,7 @@ def game_loop():
     particles_objects = particle.Particle()
     particles_objects.add_particles()
     comets_objects = comet.Comet()
-    _thread.start_new_thread(comets_objects.add_comets, (10, 5))
+    _thread.start_new_thread(comets_objects.add_comets, (10, 4))
     level_transition = lt.LevelTransition(0, -400, game_display, white, 3, FONT, display_width, display_height + 400)
     scraps_objects = scraps.Scraps(0, 0, 0, 0)
     scraps_objects_enemies = enemy.Scraps(0, 0, 0, 0)
@@ -120,7 +120,7 @@ def game_loop():
                        scraps_objects_enemies)
         enemies_pro.update(player)
         scraps_objects_enemies.update()
-        player.update(enemies)
+        player.update(enemies, comets_objects)
         scrap_pos = scraps_objects.update(pg.Rect(player.rect.x + 10, player.rect.y, 45, 85),
                                           player, projectiles_objects)
         if scrap_pos is not None:
