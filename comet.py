@@ -16,7 +16,7 @@ class Comet:
     def __init__(self):
         self.comets = []
 
-        self.x = np.random.random_integers(1, display_width)
+        self.x = np.random.random_integers(1, display_width - 100)
         self.y = np.random.random_integers(-250, -60)
         self.width = np.random.random_integers(20, 100)
         self.height = np.random.random_integers(40, 100)
