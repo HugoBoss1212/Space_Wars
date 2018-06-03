@@ -22,4 +22,4 @@ fps = 60
 base = 10
 thret = 3000
 player_dead = False
-to_win = 1
+to_win = 0

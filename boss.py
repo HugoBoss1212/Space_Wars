@@ -25,7 +25,7 @@ class Boss:
         if self.gun == 0:
             self.color = red_gun
             self.threat = np.random.random_integers(300, 400)
-            constans.to_win += 1
+            constans.to_win += 2
         else:
             self.color = red
             self.threat = -100
