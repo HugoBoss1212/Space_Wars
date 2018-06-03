@@ -5,6 +5,10 @@ import constans
 
 FORWARD = pg.image.load('res\\sprites\\back.png')
 BACK = pg.image.load('res\\sprites\\forward.png')
+KEYBOARD_LAYOUT = pg.image.load('res\\sprites\\keyboard_layout.png')
+TUT_01 = pg.image.load('res\\sprites\\tut_01.png')
+TUT_02 = pg.image.load('res\\sprites\\tut_02.png')
+TUT_03 = pg.image.load('res\\sprites\\tut_03.png')
 
 
 class Menu:
@@ -93,6 +97,8 @@ class HelpScreen(Menu):
         self.game_display.blit(text_surf[1], text_rect[1])
         if self.page == 0:
             self.game_display.blit(FORWARD, (display_width - (32 * 3), 32))
+            text_rect = []
+            i = 0
             text_surf = [font_small.render("Welcome to Space Wars !", True, black),
                          font_small.render("The goal of the game is to fight off", True, black),
                          font_small.render("hostile enemies and final boss, when", True, black),
@@ -103,22 +109,25 @@ class HelpScreen(Menu):
                          font_small.render("Controls are arrow keys to move", True, black),
                          font_small.render("spacebar to shoot.", True, black),
                          font_small.render("Good luck !", True, black)]
-            text_rect = []
             for rect in text_surf: text_rect.append(rect.get_rect())
-            i = 0
-            for rect in text_rect:
-                rect.center = (display_width / 2, (display_height / 2 + (32 * i)) - 300)
-                i += 1
-            for j in range(i):
-                self.game_display.blit(text_surf[j], text_rect[j])
+            for rect in text_rect: rect.center = (display_width / 2, (display_height / 2 + (32 * i)) - 300); i += 1
+            for j in range(i): self.game_display.blit(text_surf[j], text_rect[j])
+            self.game_display.blit(KEYBOARD_LAYOUT, (display_width / 2 - (640 / 2),
+                                                     display_height / 2 - (466 / 2) + 300))
         elif self.page == 1:
             self.game_display.blit(FORWARD, (display_width - (32 * 3), 32))
             self.game_display.blit(BACK, (display_width - (32 * 4), 32))
+            self.game_display.blit(TUT_01, (display_width / 2 - (1020 / 2),
+                                            display_height / 2 - (1018 / 2) + 50))
         elif self.page == 2:
             self.game_display.blit(FORWARD, (display_width - (32 * 3), 32))
             self.game_display.blit(BACK, (display_width - (32 * 4), 32))
+            self.game_display.blit(TUT_02, (display_width / 2 - (1020 / 2),
+                                            display_height / 2 - (1018 / 2) + 50))
         elif self.page == 3:
             self.game_display.blit(BACK, (display_width - (32 * 4), 32))
+            self.game_display.blit(TUT_03, (display_width / 2 - (1020 / 2),
+                                            display_height / 2 - (1018 / 2) + 50))
 
     def get_event(self, event):
         if event.type == pg.KEYDOWN:
