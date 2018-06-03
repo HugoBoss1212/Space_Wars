@@ -28,7 +28,7 @@ class Player(pg.sprite.Sprite):
     def draw(self, game_display):
         game_display.blit(self.image, self.rect)
         for i in range(0, self.lives):
-            game_display.blit(pg.transform.scale(PLAYER_UP_DOWN, (int(65*0.5), int(100*0.5))), (5+(i*65*0.5), 50))
+            game_display.blit(pg.transform.scale(PLAYER_UP_DOWN, (int(39*0.5), int(84*0.5))), (5+(i*65*0.5), 50))
 
     def update(self, enemies, comets):
         constans.score = self.score
@@ -59,7 +59,7 @@ class Player(pg.sprite.Sprite):
             if event.key == pg.K_UP and self.movement_y < 0: self.stop_y()
 
     def bounds(self):
-        if self.rect.x + 65 > display_width:
+        if self.rect.x + 34 > display_width:
             self.stop_x()
             self.rect.x -= 1
             self.image = PLAYER_UP_DOWN
@@ -71,7 +71,7 @@ class Player(pg.sprite.Sprite):
             self.stop_y()
             self.rect.y += 1
             self.image = PLAYER_UP_DOWN
-        if self.rect.y + 100 > display_height:
+        if self.rect.y + 84 > display_height:
             self.stop_y()
             self.rect.y -= 1
             self.image = PLAYER_UP_DOWN

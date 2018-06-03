@@ -71,7 +71,7 @@ class Enemy(Enemies):
 
     def update(self, projectile, pew_enemy_sound, po=None, pl=None, hurts=None, explosions=None, scraps=None):
 
-        if pl.level <= 7:
+        if pl.level < 7:
             # ----------- ENEMY PATH 01 ####
             if self.rect.y < display_height / 4 - (self.nr * 50):
                 self.rect.y += self.vel

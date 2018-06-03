@@ -46,7 +46,7 @@ class Projectiles:
 class Projectile(Projectiles):
     def __init__(self, x_player, y_player):
         super().__init__()
-        self.x = x_player + 10
+        self.x = x_player + 1
         self.y = y_player + 30
         self.speed = 10
         self.image = PROJECTILE
