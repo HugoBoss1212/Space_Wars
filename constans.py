@@ -23,3 +23,4 @@ base = 10
 thret = 3000
 player_dead = False
 to_win = 0
+win = -1

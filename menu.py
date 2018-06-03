@@ -31,7 +31,7 @@ class Menu:
 
     def draw(self, font, font_small):
         game_display.fill(white)
-        if constans.to_win == 0:
+        if constans.to_win == constans.win/2:
             text_surf = [font.render("YOU WIN", True, black),
                          font_small.render(str(constans.score), True, black)]
             text_rect = [text_surf[0].get_rect(), text_surf[1].get_rect()]

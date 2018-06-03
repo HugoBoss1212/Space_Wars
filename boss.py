@@ -38,6 +38,7 @@ class Boss:
                 bonus.draw(game_display)
 
     def update(self, blow_sound, pl_pro, boss_por, pew_sound, pl, comet, up_sound):
+        if constans.to_win != 0: constans.win = constans.to_win
         if len(self.bonuses) > 0:
             for bonus in self.bonuses:
                 if bonus.update(pl, comet):

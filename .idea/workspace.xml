@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="47803e8d-b93f-402c-9da8-12b4406bda16" name="Default" comment="">
+    <list default="true" id="47803e8d-b93f-402c-9da8-12b4406bda16" name="Default" comment="naprawienie błędu z wygraną">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/boss.py" afterPath="$PROJECT_DIR$/boss.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/constans.py" afterPath="$PROJECT_DIR$/constans.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/menu.py" afterPath="$PROJECT_DIR$/menu.py" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -16,10 +17,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="main.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="main.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="833">
+            <state relative-caret-position="170">
               <caret line="73" column="69" lean-forward="false" selection-start-line="73" selection-start-column="69" selection-end-line="73" selection-end-column="69" />
               <folding>
                 <element signature="e#1106#1120#0" expanded="true" />
@@ -28,11 +29,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="boss.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="boss.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/boss.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="183">
-              <caret line="27" column="32" lean-forward="false" selection-start-line="27" selection-start-column="32" selection-end-line="27" selection-end-column="32" />
+            <state relative-caret-position="119">
+              <caret line="7" column="37" lean-forward="false" selection-start-line="7" selection-start-column="37" selection-end-line="7" selection-end-column="37" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
               </folding>
@@ -53,8 +54,8 @@
       <file leaf-file-name="menu.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/menu.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-4">
-              <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+            <state relative-caret-position="217">
+              <caret line="33" column="44" lean-forward="false" selection-start-line="33" selection-start-column="44" selection-end-line="33" selection-end-column="44" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
               </folding>
@@ -65,8 +66,8 @@
       <file leaf-file-name="constans.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/constans.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="24" column="10" lean-forward="false" selection-start-line="24" selection-start-column="10" selection-end-line="24" selection-end-column="10" />
+            <state relative-caret-position="425">
+              <caret line="25" column="8" lean-forward="false" selection-start-line="25" selection-start-column="8" selection-end-line="25" selection-end-column="8" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
               </folding>
@@ -133,6 +134,7 @@
     <findStrings>
       <find>player</find>
       <find>remove</find>
+      <find>print</find>
     </findStrings>
     <replaceStrings>
       <replace>self</replace>
@@ -161,14 +163,14 @@
         <option value="$PROJECT_DIR$/sparcles_effect.py" />
         <option value="$PROJECT_DIR$/scraps.py" />
         <option value="$PROJECT_DIR$/res/boss.py" />
-        <option value="$PROJECT_DIR$/main.py" />
         <option value="$PROJECT_DIR$/enemy.py" />
         <option value="$PROJECT_DIR$/player.py" />
         <option value="$PROJECT_DIR$/projectiles.py" />
-        <option value="$PROJECT_DIR$/menu.py" />
         <option value="$PROJECT_DIR$/comet.py" />
         <option value="$PROJECT_DIR$/boss.py" />
+        <option value="$PROJECT_DIR$/menu.py" />
         <option value="$PROJECT_DIR$/constans.py" />
+        <option value="$PROJECT_DIR$/main.py" />
       </list>
     </option>
   </component>
@@ -643,13 +645,6 @@
       <option name="presentableId" value="Default" />
       <updated>1525776121527</updated>
     </task>
-    <task id="LOCAL-00001" summary="Init Commit">
-      <created>1526378876494</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1526378876494</updated>
-    </task>
     <task id="LOCAL-00002" summary="Code Refactor">
       <created>1526379872083</created>
       <option name="number" value="00002" />
@@ -986,7 +981,14 @@
       <option name="project" value="LOCAL" />
       <updated>1528023704981</updated>
     </task>
-    <option name="localTasksCounter" value="50" />
+    <task id="LOCAL-00050" summary="final commit &#10;oby">
+      <created>1528023808243</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1528023808244</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1035,8 +1037,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="dodanie wybuchu przeciwników" />
-    <MESSAGE value="dodanie animacji i metody update&#10;do szczątków przeciwników" />
     <MESSAGE value="dodanie sciezek do spritów enemy scrasp" />
     <MESSAGE value="dodanie grafik place holder" />
     <MESSAGE value="zamienienie grafik na finalne" />
@@ -1060,7 +1060,9 @@
     <MESSAGE value="dodanie w menu screenu z pomocą" />
     <MESSAGE value="dodanie tekstur do tutoriala&#10;i zakonczenie nad nim prac" />
     <MESSAGE value="dostosowanie comet" />
-    <option name="LAST_COMMIT_MESSAGE" value="dostosowanie comet" />
+    <MESSAGE value="final commit &#10;oby" />
+    <MESSAGE value="naprawienie błędu z wygraną" />
+    <option name="LAST_COMMIT_MESSAGE" value="naprawienie błędu z wygraną" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1376,26 +1378,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="833">
-          <caret line="73" column="69" lean-forward="false" selection-start-line="73" selection-start-column="69" selection-end-line="73" selection-end-column="69" />
-          <folding>
-            <element signature="e#1106#1120#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/menu.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4">
-          <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#19#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/comet.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
@@ -1408,8 +1390,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/constans.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="24" column="10" lean-forward="false" selection-start-line="24" selection-start-column="10" selection-end-line="24" selection-end-column="10" />
+        <state relative-caret-position="425">
+          <caret line="25" column="8" lean-forward="false" selection-start-line="25" selection-start-column="8" selection-end-line="25" selection-end-column="8" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
           </folding>
@@ -1418,10 +1400,30 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/boss.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="183">
-          <caret line="27" column="32" lean-forward="false" selection-start-line="27" selection-start-column="32" selection-end-line="27" selection-end-column="32" />
+        <state relative-caret-position="119">
+          <caret line="7" column="37" lean-forward="false" selection-start-line="7" selection-start-column="37" selection-end-line="7" selection-end-column="37" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/menu.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="217">
+          <caret line="33" column="44" lean-forward="false" selection-start-line="33" selection-start-column="44" selection-end-line="33" selection-end-column="44" />
+          <folding>
+            <element signature="e#0#19#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="73" column="69" lean-forward="false" selection-start-line="73" selection-start-column="69" selection-end-line="73" selection-end-column="69" />
+          <folding>
+            <element signature="e#1106#1120#0" expanded="true" />
           </folding>
         </state>
       </provider>
